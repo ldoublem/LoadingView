@@ -6,6 +6,9 @@ a simple lodingview for android with animation
 
 
 screenshot
+
+
+
 ![gif](https://github.com/ldoublem/LoadingView/blob/master/screen/%E6%95%88%E6%9E%9C.gif)
 
 ## LoadingView Usage 使用
