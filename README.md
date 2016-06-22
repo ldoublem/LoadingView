@@ -22,6 +22,6 @@ other view
 
 ## About me
 
-An android developer in Hngzhou.
+An android developer in Hangzhou.
 
 Welcome to [offer me](mailto:1227102260@qq.com). :smiley:
