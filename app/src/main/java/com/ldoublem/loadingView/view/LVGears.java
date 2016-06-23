@@ -7,6 +7,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -25,8 +27,12 @@ public class LVGears extends View {
     private float mWheelSmallLength, mWheelBigLength;
 
 
-    private int mWheelSmallSpace=6;
-    private int mWheelBigSpace=6;
+    private int mWheelSmallSpace = 6;
+    private int mWheelBigSpace = 6;
+
+    ValueAnimator valueAnimator = null;
+    float mAnimatedValue = 0f;
+
 
     public LVGears(Context context) {
         this(context, null);
@@ -62,22 +68,28 @@ public class LVGears extends View {
 
 
     private void drawAxleAndCenter(Canvas canvas) {
-        canvas.drawCircle(mWidth / 2, mWidth / 2, mPaintCenterRadius, mPaintCenter);
+
+
+
+
 
         for (int i = 0; i < 3; i++) {
             float x2 = (float) ((mWidth / 2.f - mPadding) * Math.cos(i * (360 / 3) * Math.PI / 180f));
             float y2 = (float) ((mWidth / 2.f - mPadding) * Math.sin(i * (360 / 3) * Math.PI / 180f));
             float x = (float) (mPaintCenterRadius * Math.cos(i * (360 / 3) * Math.PI / 180f));
             float y = (float) (mPaintCenterRadius * Math.sin(i * (360 / 3) * Math.PI / 180f));
-
-
             canvas.drawLine(mWidth / 2 - x,
                     mWidth / 2 - y,
                     mWidth / 2 - x2,
                     mWidth / 2 - y2, mPaintAxle);
 
-
         }
+
+  canvas.drawCircle(mWidth / 2, mWidth / 2, mPaintCenterRadius, mPaintCenter);
+
+
+
+
     }
 
     private void drawWheelBig(Canvas canvas) {
@@ -95,6 +107,7 @@ public class LVGears extends View {
         }
 
     }
+
     private void drawWheelSmall(Canvas canvas) {
         for (int i = 0; i < 360; i = i + mWheelSmallSpace) {
             int angle = (int) (360 - mAnimatedValue * 360 + i);//anticlockwise 逆时针
@@ -119,11 +132,10 @@ public class LVGears extends View {
 
         canvas.save();
         drawCircle(canvas);
-        drawAxleAndCenter(canvas);
+
         drawWheelBig(canvas);
         drawWheelSmall(canvas);
-
-
+        drawAxleAndCenter(canvas);
 
         canvas.restore();
     }
@@ -186,8 +198,6 @@ public class LVGears extends View {
         }
     }
 
-    ValueAnimator valueAnimator = null;
-    float mAnimatedValue = 0f;
 
     private ValueAnimator startViewAnim(float startF, final float endF, long time) {
         valueAnimator = ValueAnimator.ofFloat(startF, endF);

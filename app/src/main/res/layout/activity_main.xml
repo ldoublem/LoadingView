@@ -120,6 +120,13 @@
                     android:gravity="center"
                     >
 
+                    <com.ldoublem.loadingView.view.LVGearsTwo
+                        android:layout_width="75dp"
+                        android:id="@+id/lv_gears_two"
+                        android:layout_height="75dp"
+                        android:onClick="startAnim"
+                        />
+
 
                 </LinearLayout>
 
