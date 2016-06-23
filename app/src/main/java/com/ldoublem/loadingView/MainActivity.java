@@ -13,6 +13,7 @@ import com.ldoublem.loadingView.view.LVCircularRing;
 import com.ldoublem.loadingView.view.LVCircularSmile;
 import com.ldoublem.loadingView.view.LVCircularZoom;
 import com.ldoublem.loadingView.view.LVEatBeans;
+import com.ldoublem.loadingView.view.LVGears;
 import com.ldoublem.loadingView.view.LVLineWithText;
 import com.ldoublem.loadingView.view.LVPlayBall;
 
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     LVEatBeans mLVEatBeans;
     LVCircularCD mLVCircularCD;
     LVCircularSmile mLVCircularSmile;
+
+    LVGears mLVGears;
+
     int mValueLVLineWithText = 0;
 
     @Override
@@ -47,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
         mLVEatBeans = (LVEatBeans) findViewById(R.id.lv_eatBeans);
         mLVCircularCD = (LVCircularCD) findViewById(R.id.lv_circularCD);
         mLVCircularSmile = (LVCircularSmile) findViewById(R.id.lv_circularSmile);
+        mLVGears = (LVGears) findViewById(R.id.lv_gears);
+
+
+
     }
 
     public void startAnim(View v) {
@@ -70,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
             ((LVPlayBall) v).startAnim();
         } else if (v instanceof LVLineWithText) {
             startLVLineWithTextAnim();
+        }else if(v instanceof  LVGears)
+        {
+            ((LVGears) v).startAnim();
         }
 
 
@@ -86,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         mLVEatBeans.startAnim();
         mLVCircularCD.startAnim();
         mLVCircularSmile.startAnim();
+        mLVGears.startAnim();
     }
 
 
@@ -105,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         stopLVLineWithTextAnim();
         mLVCircularCD.stopAnim();
         mLVCircularSmile.stopAnim();
+        mLVGears.stopAnim();
     }
 
 

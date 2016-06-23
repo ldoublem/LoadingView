@@ -64,9 +64,7 @@ public class LVEatBeans extends View {
         float eatRightX = mPadding + eatErWidth + eatErPositonX;
         RectF rectF = new RectF(mPadding + eatErPositonX, mHigh / 2 - eatErWidth / 2, eatRightX, mHigh / 2 + eatErWidth / 2);
         canvas.drawArc(rectF, eatErStrtAngle, eatErEndAngle
-                , true, mPaint);//第三个参数是否显示半径
-
-
+                , true, mPaint);
         canvas.drawCircle(mPadding + eatErPositonX + eatErWidth / 2,
                 mHigh / 2 - eatErWidth / 4,
                 beansWidth / 2, mPaintEye);

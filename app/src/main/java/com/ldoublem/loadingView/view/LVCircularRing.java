@@ -58,7 +58,7 @@ public class LVCircularRing extends View {
         mPaint.setColor(Color.WHITE);
         RectF rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
         canvas.drawArc(rectF, startAngle, 100
-                , false, mPaint);//第三个参数是否显示半径
+                , false, mPaint);//第四个参数是否显示半径
 
     }
 

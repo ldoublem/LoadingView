@@ -33,9 +33,9 @@
 
                     <com.ldoublem.loadingView.view.LVCircularCD
                         android:id="@+id/lv_circularCD"
-                        android:onClick="startAnim"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"/>
+                        android:layout_height="50dp"
+                        android:onClick="startAnim"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -47,10 +47,10 @@
 
                     <com.ldoublem.loadingView.view.LVCircularRing
                         android:id="@+id/lv_circularring"
-                        android:onClick="startAnim"
-
                         android:layout_width="50dp"
-                        android:layout_height="50dp"/>
+
+                        android:layout_height="50dp"
+                        android:onClick="startAnim"/>
 
 
                 </LinearLayout>
@@ -64,10 +64,10 @@
 
                     <com.ldoublem.loadingView.view.LVCircular
                         android:id="@+id/lv_circular"
-                        android:onClick="startAnim"
-
                         android:layout_width="50dp"
-                        android:layout_height="50dp"/>
+
+                        android:layout_height="50dp"
+                        android:onClick="startAnim"/>
 
 
                 </LinearLayout>
@@ -86,12 +86,13 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     >
-                    <com.ldoublem.loadingView.view.LVCircularSmile
-                        android:layout_width="50dp"
-                        android:id="@+id/lv_circularSmile"
-                        android:onClick="startAnim"
 
-                        android:layout_height="50dp"/>
+                    <com.ldoublem.loadingView.view.LVCircularSmile
+                        android:id="@+id/lv_circularSmile"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+
+                        android:onClick="startAnim"/>
 
 
                 </LinearLayout>
@@ -102,6 +103,12 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     >
+
+                    <com.ldoublem.loadingView.view.LVGears
+                        android:id="@+id/lv_gears"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:onClick="startAnim"/>
 
 
                 </LinearLayout>
@@ -133,9 +140,9 @@
                     <com.ldoublem.loadingView.view.LVCircularJump
                         android:id="@+id/lv_circularJump"
                         android:layout_width="50dp"
-                        android:onClick="startAnim"
+                        android:layout_height="50dp"
 
-                        android:layout_height="50dp"/>
+                        android:onClick="startAnim"/>
 
 
                 </LinearLayout>
@@ -149,10 +156,10 @@
 
                     <com.ldoublem.loadingView.view.LVCircularZoom
                         android:id="@+id/lv_circularZoom"
-                        android:onClick="startAnim"
-
                         android:layout_width="50dp"
-                        android:layout_height="50dp"/>
+
+                        android:layout_height="50dp"
+                        android:onClick="startAnim"/>
 
 
                 </LinearLayout>
@@ -166,10 +173,10 @@
 
                     <com.ldoublem.loadingView.view.LVPlayBall
                         android:id="@+id/lv_playball"
-                        android:onClick="startAnim"
-
                         android:layout_width="50dp"
+
                         android:layout_height="50dp"
+                        android:onClick="startAnim"
                         />
 
                 </LinearLayout>
@@ -194,10 +201,10 @@
 
                     <com.ldoublem.loadingView.view.LVLineWithText
                         android:id="@+id/lv_linetext"
-                        android:onClick="startAnim"
-
                         android:layout_width="match_parent"
+
                         android:layout_height="50dp"
+                        android:onClick="startAnim"
                         />
 
                 </LinearLayout>
@@ -223,10 +230,10 @@
 
                     <com.ldoublem.loadingView.view.LVEatBeans
                         android:id="@+id/lv_eatBeans"
-                        android:onClick="startAnim"
-
                         android:layout_width="match_parent"
+
                         android:layout_height="50dp"
+                        android:onClick="startAnim"
                         />
 
                 </LinearLayout>

@@ -54,7 +54,7 @@ public class LVCircularCD extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
+        canvas.save();
         mPaint.setStrokeWidth(2);
         canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 2 - mPadding, mPaint);
         mPaint.setStrokeWidth(3);
@@ -64,19 +64,19 @@ public class LVCircularCD extends View {
         RectF rectF = new RectF(mWidth / 2 - mWidth / 3, mWidth / 2 - mWidth / 3,
                 mWidth / 2 + mWidth / 3, mWidth / 2 + mWidth / 3);
         canvas.drawArc(rectF, 0,80
-                , false, mPaint);//第三个参数是否显示半径
+                , false, mPaint);
 
         canvas.drawArc(rectF, 180,80
-                , false, mPaint);//第三个参数是否显示半径
+                , false, mPaint);
 
 
         RectF rectF2 = new RectF(mWidth / 2 - mWidth / 4, mWidth / 2 - mWidth / 4,
                 mWidth / 2 + mWidth / 4, mWidth / 2 + mWidth / 4);
         canvas.drawArc(rectF2, 0, 80
-                , false, mPaint);//第三个参数是否显示半径
+                , false, mPaint);
         canvas.drawArc(rectF2, 180, 80
-                , false, mPaint);//第三个参数是否显示半径
-
+                , false, mPaint);
+        canvas.restore();
 
 
     }
@@ -92,8 +92,6 @@ public class LVCircularCD extends View {
         mProgerssRotateAnim.setRepeatCount(-1);
         mProgerssRotateAnim.setInterpolator(new LinearInterpolator());//不停顿
         mProgerssRotateAnim.setFillAfter(true);//停在最后
-
-
 
 
     }
