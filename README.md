@@ -17,6 +17,11 @@ LVLineWithText
 ```
      LVLineWithText.setValue(50);//0-100
 ```
+LVFinePoiStar
+```
+    LVFinePoiStar.setDrawPath(false);//Draw the path of the Star
+```
+
 other view
 ```java
      v.startAnim();
