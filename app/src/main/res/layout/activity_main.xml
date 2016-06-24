@@ -65,7 +65,22 @@
                     <com.ldoublem.loadingView.view.LVCircular
                         android:id="@+id/lv_circular"
                         android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:onClick="startAnim"/>
 
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    >
+
+                    <com.ldoublem.loadingView.view.LVFinePoiStar
+                        android:id="@+id/lv_finePoiStar"
+                        android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:onClick="startAnim"/>
 
@@ -121,13 +136,21 @@
                     >
 
                     <com.ldoublem.loadingView.view.LVGearsTwo
-                        android:layout_width="75dp"
                         android:id="@+id/lv_gears_two"
+                        android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:onClick="startAnim"
                         />
 
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    >
                 </LinearLayout>
 
             </LinearLayout>
@@ -188,7 +211,13 @@
 
                 </LinearLayout>
 
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    >
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout

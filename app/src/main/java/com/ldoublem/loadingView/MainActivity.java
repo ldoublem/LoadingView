@@ -13,6 +13,7 @@ import com.ldoublem.loadingView.view.LVCircularRing;
 import com.ldoublem.loadingView.view.LVCircularSmile;
 import com.ldoublem.loadingView.view.LVCircularZoom;
 import com.ldoublem.loadingView.view.LVEatBeans;
+import com.ldoublem.loadingView.view.LVFinePoiStar;
 import com.ldoublem.loadingView.view.LVGears;
 import com.ldoublem.loadingView.view.LVGearsTwo;
 import com.ldoublem.loadingView.view.LVLineWithText;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     LVGears mLVGears;
     LVGearsTwo mLVGearsTwo;
+    LVFinePoiStar mLVFinePoiStar;
 
     int mValueLVLineWithText = 0;
 
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mLVCircularSmile = (LVCircularSmile) findViewById(R.id.lv_circularSmile);
         mLVGears = (LVGears) findViewById(R.id.lv_gears);
         mLVGearsTwo = (LVGearsTwo) findViewById(R.id.lv_gears_two);
-
+        mLVFinePoiStar= (LVFinePoiStar) findViewById(R.id.lv_finePoiStar);
 
 
     }
@@ -88,7 +90,10 @@ public class MainActivity extends AppCompatActivity {
         {
             ((LVGearsTwo) v).startAnim();
         }
-
+        else if(v instanceof  LVFinePoiStar)
+        {
+            ((LVFinePoiStar) v).startAnim();
+        }
 
     }
 
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         mLVCircularSmile.startAnim();
         mLVGears.startAnim();
         mLVGearsTwo.startAnim();
+        mLVFinePoiStar.startAnim();
     }
 
 
@@ -126,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         mLVCircularSmile.stopAnim();
         mLVGears.stopAnim();
         mLVGearsTwo.stopAnim();
+        mLVFinePoiStar.stopAnim();
     }
 
 
