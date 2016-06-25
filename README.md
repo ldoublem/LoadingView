@@ -1,5 +1,5 @@
 # LoadingView
-a simple lodingview for android with animation
+a simple loadingview for android with animation
 
 
 简单的带有动画效果的加载控件
