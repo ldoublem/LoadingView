@@ -11,8 +11,20 @@ screenshot
 
 ![gif](https://github.com/ldoublem/LoadingView/blob/master/screen/%E6%95%88%E6%9E%9C.gif)
 
-## LoadingView Usage 使用
+![chromelogo](https://github.com/ldoublem/LoadingView/blob/master/screen/chromelogo.png)
 
+
+## LVChromeLogo canvas 
+```
+LVChromeLogo 
+use canvas paint a view like chrome logo
+1,Draw three fans of 120 degrees
+2,Draw three equilateral triangle
+3,Draw shadow
+4,Draw center circle
+```
+
+## LoadingView Usage 使用
 LVLineWithText
 ```
      LVLineWithText.setValue(50);//0-100
