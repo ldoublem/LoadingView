@@ -1,11 +1,13 @@
 package com.ldoublem.loadingView;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.ldoublem.loadingView.view.LVChromeLogo;
 import com.ldoublem.loadingView.view.LVCircular;
 import com.ldoublem.loadingView.view.LVCircularCD;
 import com.ldoublem.loadingView.view.LVCircularJump;
@@ -21,6 +23,7 @@ import com.ldoublem.loadingView.view.LVPlayBall;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     LVGears mLVGears;
     LVGearsTwo mLVGearsTwo;
     LVFinePoiStar mLVFinePoiStar;
+      LVChromeLogo mLVChromeLogo;
 
     int mValueLVLineWithText = 0;
 
@@ -59,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         mLVGearsTwo = (LVGearsTwo) findViewById(R.id.lv_gears_two);
         mLVFinePoiStar= (LVFinePoiStar) findViewById(R.id.lv_finePoiStar);
 
-
+        mLVChromeLogo= (LVChromeLogo) findViewById(R.id.lv_chromeLogo);
     }
 
     public void startAnim(View v) {
@@ -92,7 +96,17 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(v instanceof  LVFinePoiStar)
         {
+            ((LVFinePoiStar) v).setDrawPath(false);
             ((LVFinePoiStar) v).startAnim();
+        }
+
+        else if(v instanceof LVChromeLogo)
+        {
+            ((LVChromeLogo) v).startAnim();
+//            Intent i=new Intent();
+//            i.setClass(this,ChromeLogoActivity.class);
+//            startActivity(i);
+
         }
 
     }
@@ -110,7 +124,9 @@ public class MainActivity extends AppCompatActivity {
         mLVCircularSmile.startAnim();
         mLVGears.startAnim();
         mLVGearsTwo.startAnim();
+        mLVFinePoiStar.setDrawPath(true);
         mLVFinePoiStar.startAnim();
+        mLVChromeLogo.startAnim();
     }
 
 
@@ -133,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         mLVGears.stopAnim();
         mLVGearsTwo.stopAnim();
         mLVFinePoiStar.stopAnim();
+        mLVChromeLogo.stopAnim();
     }
 
 

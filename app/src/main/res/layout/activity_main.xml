@@ -151,6 +151,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     >
+
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -218,6 +220,55 @@
                     android:gravity="center"
                     >
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    >
+
+                    <com.ldoublem.loadingView.view.LVChromeLogo
+                        android:id="@+id/lv_chromeLogo"
+                        android:onClick="startAnim"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    >
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    >
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    >
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
