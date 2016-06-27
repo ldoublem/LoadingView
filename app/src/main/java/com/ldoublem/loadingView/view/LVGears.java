@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
@@ -27,8 +28,8 @@ public class LVGears extends View {
     private float mWheelSmallLength, mWheelBigLength;
 
 
-    private int mWheelSmallSpace = 6;
-    private int mWheelBigSpace = 6;
+    private int mWheelSmallSpace = 8;
+    private int mWheelBigSpace =6;
 
     ValueAnimator valueAnimator = null;
     float mAnimatedValue = 0f;
@@ -88,8 +89,9 @@ public class LVGears extends View {
     }
 
     private void drawWheelBig(Canvas canvas) {
+
         for (int i = 0; i < 360; i = i + mWheelBigSpace) {
-            int angle = (int) (mAnimatedValue * 360 + i);//clockwise 顺时针
+            int angle = (int) (mAnimatedValue * mWheelBigSpace + i);//clockwise 顺时针
             float x = (float) ((mWidth / 2.f - mPadding + mWheelBigLength) * Math.cos(angle * Math.PI / 180f));
             float y = (float) ((mWidth / 2.f - mPadding + mWheelBigLength) * Math.sin(angle * Math.PI / 180f));
             float x2 = (float) ((mWidth / 2.f - mPadding) * Math.cos(angle * Math.PI / 180f));
@@ -99,13 +101,15 @@ public class LVGears extends View {
                     mWidth / 2.f - x2,
                     mWidth / 2.f - y2,
                     mPaintWheelBig);
+
         }
 
     }
 
     private void drawWheelSmall(Canvas canvas) {
+
         for (int i = 0; i < 360; i = i + mWheelSmallSpace) {
-            int angle = (int) (360 - mAnimatedValue * 360 + i);//anticlockwise 逆时针
+            int angle = (int) (360 - mAnimatedValue * mWheelBigSpace + i);//anticlockwise 逆时针
             float x = (float) ((mWidth / 4.f) * Math.cos(angle * Math.PI / 180f));
             float y = (float) ((mWidth / 4.f) * Math.sin(angle * Math.PI / 180f));
             float x2 = (float) ((mWidth / 4.f + mWheelSmallLength) * Math.cos(angle * Math.PI / 180f));
@@ -115,6 +119,9 @@ public class LVGears extends View {
                     mWidth / 2.f - x2,
                     mWidth / 2.f - y2,
                     mPaintWheelSmall);
+
+
+
 
         }
 
@@ -180,7 +187,7 @@ public class LVGears extends View {
 
     public void startAnim() {
         stopAnim();
-        startViewAnim(0f, 1f, 3500);
+        startViewAnim(1, 100, 300);
     }
 
     public void stopAnim() {
@@ -194,8 +201,8 @@ public class LVGears extends View {
     }
 
 
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
+    private ValueAnimator startViewAnim(int startF, final int endF, long time) {
+        valueAnimator = ValueAnimator.ofInt(startF, endF);
         valueAnimator.setDuration(time);
         valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
@@ -203,9 +210,8 @@ public class LVGears extends View {
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-
-                mAnimatedValue = (float) valueAnimator.getAnimatedValue();
+                mAnimatedValue = (int) valueAnimator.getAnimatedValue();
+                mAnimatedValue=mAnimatedValue/100f;
                 postInvalidate();
             }
         });

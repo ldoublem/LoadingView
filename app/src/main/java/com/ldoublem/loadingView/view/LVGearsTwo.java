@@ -85,7 +85,7 @@ public class LVGearsTwo extends View {
         mPaint.setStrokeWidth(dip2px(1));
 
         for (int i = 0; i < 360; i = i + mWheelSmallSpace) {
-            int angle = (int) (mAnimatedValue * 360 + i);
+            int angle = (int) (mAnimatedValue * mWheelSmallSpace + i);
             float x3 = (float) ((smallRingCenterX) * Math.cos(angle * Math.PI / 180f));
             float y3 = (float) ((smallRingCenterY) * Math.sin(angle * Math.PI / 180f));
             float x4 = (float) ((smallRingCenterX + mWheelLength) * Math.cos(angle * Math.PI / 180f));
@@ -107,7 +107,7 @@ public class LVGearsTwo extends View {
         float strokeWidth = dip2px(1.5f) / 4;
         mPaint.setStrokeWidth(dip2px(1.5f));
         for (int i = 0; i < 360; i = i + mWheelBigSpace) {
-            int angle = (int) (360 - (mAnimatedValue * 360 + i));
+            int angle = (int) (360 - (mAnimatedValue * mWheelBigSpace + i));
             float x3 = (float) ((bigRingCenterX - smallRingCenterX) * Math.cos(angle * Math.PI / 180f));
             float y3 = (float) ((bigRingCenterY - smallRingCenterY) * Math.sin(angle * Math.PI / 180f));
             float x4 = (float) ((bigRingCenterX - smallRingCenterX + mWheelLength) * Math.cos(angle * Math.PI / 180f));
@@ -207,7 +207,7 @@ public class LVGearsTwo extends View {
 
     public void startAnim() {
         stopAnim();
-        startViewAnim(0f, 1f, 3500);
+        startViewAnim(0f, 1f, 300);
     }
 
     public void stopAnim() {

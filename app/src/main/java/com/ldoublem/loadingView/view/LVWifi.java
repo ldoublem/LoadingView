@@ -20,7 +20,7 @@ public class LVWifi extends View {
     private float mWidth = 0f;
     private float mPadding = 0f;
     private Paint mPaint;
-    private int signalSize = 6;
+    private int signalSize = 4;
 
     public LVWifi(Context context) {
         this(context, null);
