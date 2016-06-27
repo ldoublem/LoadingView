@@ -30,6 +30,7 @@ public class LVFinePoiStar extends View {
     private List<Point> listPoint = new ArrayList<Point>();
 
     private boolean isDrawPath = true;
+    RectF rectF = new RectF();
 
     public LVFinePoiStar(Context context) {
         this(context, null);
@@ -117,23 +118,21 @@ public class LVFinePoiStar extends View {
 
         } else if (mAnimatedValue > 0.5f && mAnimatedValue <= 0.75f) {
             drawEdge(canvas, 5);
-            RectF rectF = new RectF(mPadding, mPadding,
+            rectF = new RectF(mPadding, mPadding,
                     mWidth - mPadding, mWidth - mPadding);
             canvas.drawArc(rectF, -180 + ((90 - 360 / hornCount)), 360 / 0.25f * (mAnimatedValue - 0.5f)
                     , false, mPaintCircle);
         } else {
-//            mPaintLine.setStrokeWidth(dip2px(1.5f));
             mPaintCircle.setStrokeWidth(dip2px(1.5f));
             mPaintLine.setShadowLayer(1, 1, 1, Color.WHITE);
             drawEdge(canvas, 5);
-            RectF rectF = new RectF(mPadding, mPadding,
+            rectF = new RectF(mPadding, mPadding,
                     mWidth - mPadding, mWidth - mPadding);
             canvas.drawArc(rectF, -180 + ((90 - 360 / hornCount)), 360
                     , false, mPaintCircle);
 
 
         }
-//        mPaintLine.setStrokeWidth(dip2px(1.0f));
         mPaintCircle.setStrokeWidth(dip2px(1.0f));
         mPaintLine.setShadowLayer(0, 1, 1, Color.WHITE);
 

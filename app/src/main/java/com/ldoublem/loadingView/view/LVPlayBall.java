@@ -25,7 +25,7 @@ public class LVPlayBall extends View {
     private float mRadius = 0f;
     private float mRadiusBall = 0f;
     private float ballY = 0f;
-
+    Path path = new Path();
 
     public LVPlayBall(Context context) {
 
@@ -59,7 +59,7 @@ public class LVPlayBall extends View {
         super.onDraw(canvas);
 
 
-        Path path = new Path();
+        path=new Path();
         path.moveTo(0 + mRadius * 2 + mPaintStrokeWidth, getMeasuredHeight() / 2);
         path.quadTo(mWidth / 2, quadToStart, mWidth - mRadius * 2 - mPaintStrokeWidth, mHigh / 2);
         mPaint.setStrokeWidth(2);

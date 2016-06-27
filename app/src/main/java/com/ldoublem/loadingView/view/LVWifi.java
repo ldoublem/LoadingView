@@ -11,35 +11,74 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 
 /**
- * Created by lumingmin on 16/6/20.
+ * Created by lumingmin on 16/6/27.
  */
 
-public class LVCircularSmile extends View {
-
-    private Paint mPaint;
-
+public class LVWifi extends View {
     private float mWidth = 0f;
-    private float mEyeWidth = 0f;
-
     private float mPadding = 0f;
-    private float startAngle = 0f;
-    private boolean isSmile = false;
-    RectF rectF = new RectF();
+    private Paint mPaint;
+    private int signalSize = 6;
 
-    public LVCircularSmile(Context context) {
+    public LVWifi(Context context) {
         this(context, null);
     }
 
-    public LVCircularSmile(Context context, AttributeSet attrs) {
+    public LVWifi(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LVCircularSmile(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LVWifi(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initPaint();
+    }
+
+    private void initPaint() {
+
+
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setColor(Color.WHITE);
+
+
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+        canvas.save();
+        canvas.translate(0, mWidth / signalSize);
+        mPaint.setStrokeWidth(mWidth / signalSize / 2 / 2 / 2);
+        int scale = (int) ((mAnimatedValue * signalSize - (int) (mAnimatedValue * signalSize)) * signalSize)+1;
+        RectF rect = null;
+        float signalRadius = mWidth / 2 / signalSize;
+        for (int i = 0; i < signalSize; i++) {
+
+            if (i>=signalSize-scale) {
+                float radius = signalRadius * i;
+                rect = new RectF(
+                        radius,
+                        radius,
+                        mWidth - radius,
+                        mWidth - radius);
+                if (i < signalSize - 1) {
+                    mPaint.setStyle(Paint.Style.STROKE);
+                    canvas.drawArc(rect, -135, 90
+                            , false, mPaint);
+                } else {
+                    mPaint.setStyle(Paint.Style.FILL);
+                    canvas.drawArc(rect, -135, 90
+                            , true, mPaint);
+                }
+            }
+
+        }
+        canvas.restore();
+
     }
 
     @Override
@@ -50,64 +89,31 @@ public class LVCircularSmile extends View {
             mWidth = getMeasuredHeight();
         else
             mWidth = getMeasuredWidth();
-        mPadding = dip2px(10);
-        mEyeWidth = dip2px(3);
+        mPadding = dip2px(1);
 
-
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
-        mPaint.setStyle(Paint.Style.STROKE);
-
-        canvas.drawArc(rectF, startAngle, 180
-                , false, mPaint);//第四个参数是否显示半径
-
-        mPaint.setStyle(Paint.Style.FILL);
-        if (isSmile) {
-            canvas.drawCircle(mPadding + mEyeWidth + mEyeWidth / 2, mWidth / 3, mEyeWidth, mPaint);
-            canvas.drawCircle(mWidth - mPadding - mEyeWidth - mEyeWidth / 2, mWidth / 3, mEyeWidth, mPaint);
-        }
-
-    }
-
-
-    private void initPaint() {
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.WHITE);
-        mPaint.setStrokeWidth(dip2px(2));
 
     }
 
     public void startAnim() {
         stopAnim();
-        startViewAnim(0f, 1f, 1500);
+        startViewAnim(0f, 1f, 6000);
     }
+
+    private ValueAnimator valueAnimator;
+    private float mAnimatedValue = 0.9f;
 
     public void stopAnim() {
         if (valueAnimator != null) {
             clearAnimation();
-            isSmile = false;
-            mAnimatedValue = 0f;
-            startAngle = 0f;
+
             valueAnimator.setRepeatCount(1);
             valueAnimator.cancel();
             valueAnimator.end();
+            mAnimatedValue = 0.9f;
+            postInvalidate();
         }
     }
 
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
-
-
-    ValueAnimator valueAnimator;
-    float mAnimatedValue = 0f;
 
     private ValueAnimator startViewAnim(float startF, final float endF, long time) {
         valueAnimator = ValueAnimator.ofFloat(startF, endF);
@@ -120,14 +126,6 @@ public class LVCircularSmile extends View {
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
 
                 mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                if (mAnimatedValue < 0.5) {
-                    isSmile = false;
-                    startAngle = 720 * mAnimatedValue;
-                } else {
-                    startAngle = 720;
-                    isSmile = true;
-                }
-
                 invalidate();
             }
         });
@@ -154,6 +152,11 @@ public class LVCircularSmile extends View {
         }
 
         return valueAnimator;
+    }
+
+    public int dip2px(float dpValue) {
+        final float scale = getContext().getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 
 

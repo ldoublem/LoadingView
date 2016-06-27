@@ -7,6 +7,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -230,7 +232,7 @@ public class LVGearsTwo extends View {
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
 
                 mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                invalidate();
+                postInvalidate();
             }
         });
         valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -263,6 +265,9 @@ public class LVGearsTwo extends View {
         final float scale = getContext().getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
+
+
+
 
 
 }

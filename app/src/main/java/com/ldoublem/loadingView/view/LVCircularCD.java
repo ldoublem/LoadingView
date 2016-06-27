@@ -23,7 +23,8 @@ public class LVCircularCD extends View {
     private float mPadding = 0f;
 
     RotateAnimation mProgerssRotateAnim;
-
+    RectF rectF = new RectF();
+    RectF rectF2 = new RectF();
     public LVCircularCD(Context context) {
         this(context, null);
     }
@@ -50,6 +51,8 @@ public class LVCircularCD extends View {
 
     }
 
+
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -61,16 +64,16 @@ public class LVCircularCD extends View {
         canvas.drawCircle(mWidth / 2, mWidth / 2, mPadding, mPaint);
 
         mPaint.setStrokeWidth(2);
-        RectF rectF = new RectF(mWidth / 2 - mWidth / 3, mWidth / 2 - mWidth / 3,
+        rectF = new RectF(mWidth / 2 - mWidth / 3, mWidth / 2 - mWidth / 3,
                 mWidth / 2 + mWidth / 3, mWidth / 2 + mWidth / 3);
-        canvas.drawArc(rectF, 0,80
+        canvas.drawArc(rectF, 0, 80
                 , false, mPaint);
 
-        canvas.drawArc(rectF, 180,80
+        canvas.drawArc(rectF, 180, 80
                 , false, mPaint);
 
 
-        RectF rectF2 = new RectF(mWidth / 2 - mWidth / 4, mWidth / 2 - mWidth / 4,
+        rectF2 = new RectF(mWidth / 2 - mWidth / 4, mWidth / 2 - mWidth / 4,
                 mWidth / 2 + mWidth / 4, mWidth / 2 + mWidth / 4);
         canvas.drawArc(rectF2, 0, 80
                 , false, mPaint);

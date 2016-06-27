@@ -70,9 +70,6 @@ public class LVGears extends View {
     private void drawAxleAndCenter(Canvas canvas) {
 
 
-
-
-
         for (int i = 0; i < 3; i++) {
             float x2 = (float) ((mWidth / 2.f - mPadding) * Math.cos(i * (360 / 3) * Math.PI / 180f));
             float y2 = (float) ((mWidth / 2.f - mPadding) * Math.sin(i * (360 / 3) * Math.PI / 180f));
@@ -85,9 +82,7 @@ public class LVGears extends View {
 
         }
 
-  canvas.drawCircle(mWidth / 2, mWidth / 2, mPaintCenterRadius, mPaintCenter);
-
-
+        canvas.drawCircle(mWidth / 2, mWidth / 2, mPaintCenterRadius, mPaintCenter);
 
 
     }
@@ -209,8 +204,9 @@ public class LVGears extends View {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
 
+
                 mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                invalidate();
+                postInvalidate();
             }
         });
         valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -230,6 +226,7 @@ public class LVGears extends View {
                 super.onAnimationRepeat(animation);
             }
         });
+
         if (!valueAnimator.isRunning()) {
             valueAnimator.start();
 

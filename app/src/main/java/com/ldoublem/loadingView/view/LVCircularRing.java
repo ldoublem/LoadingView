@@ -24,6 +24,7 @@ public class LVCircularRing extends View {
     private float mWidth = 0f;
     private float mPadding = 0f;
     private float startAngle = 0f;
+    RectF rectF = new RectF();
 
     public LVCircularRing(Context context) {
         this(context, null);
@@ -56,7 +57,7 @@ public class LVCircularRing extends View {
         mPaint.setColor(Color.argb(100, 255, 255, 255));
         canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 2 - mPadding, mPaint);
         mPaint.setColor(Color.WHITE);
-        RectF rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
+        rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
         canvas.drawArc(rectF, startAngle, 100
                 , false, mPaint);//第四个参数是否显示半径
 

@@ -152,6 +152,12 @@
                     android:gravity="center"
                     >
 
+                    <com.ldoublem.loadingView.view.LVWifi
+                        android:layout_width="50dp"
+                        android:onClick="startAnim"
+                        android:id="@+id/lv_wifi"
+                        android:layout_height="50dp"/>
+
 
                 </LinearLayout>
 
@@ -236,9 +242,9 @@
 
                     <com.ldoublem.loadingView.view.LVChromeLogo
                         android:id="@+id/lv_chromeLogo"
-                        android:onClick="startAnim"
                         android:layout_width="70dp"
-                        android:layout_height="70dp"/>
+                        android:layout_height="70dp"
+                        android:onClick="startAnim"/>
 
                 </LinearLayout>
 
@@ -248,6 +254,12 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     >
+
+                    <com.ldoublem.loadingView.view.LVBattery
+                        android:id="@+id/lv_battery"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:onClick="startAnim"/>
 
                 </LinearLayout>
 

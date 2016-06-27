@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.ldoublem.loadingView.view.LVBattery;
 import com.ldoublem.loadingView.view.LVChromeLogo;
 import com.ldoublem.loadingView.view.LVCircular;
 import com.ldoublem.loadingView.view.LVCircularCD;
@@ -20,10 +21,10 @@ import com.ldoublem.loadingView.view.LVGears;
 import com.ldoublem.loadingView.view.LVGearsTwo;
 import com.ldoublem.loadingView.view.LVLineWithText;
 import com.ldoublem.loadingView.view.LVPlayBall;
+import com.ldoublem.loadingView.view.LVWifi;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -42,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
     LVGears mLVGears;
     LVGearsTwo mLVGearsTwo;
     LVFinePoiStar mLVFinePoiStar;
-      LVChromeLogo mLVChromeLogo;
-
+    LVChromeLogo mLVChromeLogo;
+    LVBattery mLVBattery;
+    LVWifi mLVWifi;
     int mValueLVLineWithText = 0;
 
     @Override
@@ -61,9 +63,15 @@ public class MainActivity extends AppCompatActivity {
         mLVCircularSmile = (LVCircularSmile) findViewById(R.id.lv_circularSmile);
         mLVGears = (LVGears) findViewById(R.id.lv_gears);
         mLVGearsTwo = (LVGearsTwo) findViewById(R.id.lv_gears_two);
-        mLVFinePoiStar= (LVFinePoiStar) findViewById(R.id.lv_finePoiStar);
+        mLVFinePoiStar = (LVFinePoiStar) findViewById(R.id.lv_finePoiStar);
+        mLVChromeLogo = (LVChromeLogo) findViewById(R.id.lv_chromeLogo);
+        mLVBattery = (LVBattery) findViewById(R.id.lv_battery);
+        mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.VERTICAL);
+//        mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.HORIZONTAL);
+        mLVBattery.setValue(50);
+        mLVBattery.setShowNum(false);
+        mLVWifi = (LVWifi) findViewById(R.id.lv_wifi);
 
-        mLVChromeLogo= (LVChromeLogo) findViewById(R.id.lv_chromeLogo);
     }
 
     public void startAnim(View v) {
@@ -87,26 +95,19 @@ public class MainActivity extends AppCompatActivity {
             ((LVPlayBall) v).startAnim();
         } else if (v instanceof LVLineWithText) {
             startLVLineWithTextAnim();
-        }else if(v instanceof  LVGears)
-        {
+        } else if (v instanceof LVGears) {
             ((LVGears) v).startAnim();
-        }else if(v instanceof  LVGearsTwo)
-        {
+        } else if (v instanceof LVGearsTwo) {
             ((LVGearsTwo) v).startAnim();
-        }
-        else if(v instanceof  LVFinePoiStar)
-        {
+        } else if (v instanceof LVFinePoiStar) {
             ((LVFinePoiStar) v).setDrawPath(false);
             ((LVFinePoiStar) v).startAnim();
-        }
-
-        else if(v instanceof LVChromeLogo)
-        {
+        } else if (v instanceof LVChromeLogo) {
             ((LVChromeLogo) v).startAnim();
-//            Intent i=new Intent();
-//            i.setClass(this,ChromeLogoActivity.class);
-//            startActivity(i);
-
+        } else if (v instanceof LVBattery) {
+            ((LVBattery) v).startAnim();
+        } else if (v instanceof LVWifi) {
+            ((LVWifi) v).startAnim();
         }
 
     }
@@ -127,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
         mLVFinePoiStar.setDrawPath(true);
         mLVFinePoiStar.startAnim();
         mLVChromeLogo.startAnim();
+        mLVBattery.startAnim();
+        mLVWifi.startAnim();
     }
 
 
@@ -150,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
         mLVGearsTwo.stopAnim();
         mLVFinePoiStar.stopAnim();
         mLVChromeLogo.stopAnim();
+        mLVBattery.stopAnim();
+        mLVWifi.stopAnim();
+
+
     }
 
 
