@@ -34,6 +34,19 @@ LVFinePoiStar
     LVFinePoiStar.setDrawPath(false);//Draw the path of the Star
 ```
 
+LVBattery
+
+![HORIZONTAL](https://github.com/ldoublem/LoadingView/blob/master/screen/bHORIZONTAL.png)
+
+![VERTICAL](https://github.com/ldoublem/LoadingView/blob/master/screen/bVERTICAL.png)
+
+```
+    LVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.VERTICAL);//LVBattery.BatteryOrientation.HORIZONTAL
+    LVBattery.setShowNum(true);//show number in battery
+```
+
+
+
 other view
 ```java
      v.startAnim();
