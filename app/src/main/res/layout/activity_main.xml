@@ -269,6 +269,11 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     >
+                    <com.ldoublem.loadingView.view.LVNews
+                        android:layout_width="40dp"
+                        android:onClick="startAnim"
+                        android:id="@+id/lv_news"
+                        android:layout_height="40dp"/>
 
                 </LinearLayout>
 

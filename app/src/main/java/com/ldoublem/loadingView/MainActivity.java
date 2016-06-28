@@ -20,6 +20,7 @@ import com.ldoublem.loadingView.view.LVFinePoiStar;
 import com.ldoublem.loadingView.view.LVGears;
 import com.ldoublem.loadingView.view.LVGearsTwo;
 import com.ldoublem.loadingView.view.LVLineWithText;
+import com.ldoublem.loadingView.view.LVNews;
 import com.ldoublem.loadingView.view.LVPlayBall;
 import com.ldoublem.loadingView.view.LVWifi;
 
@@ -46,7 +47,11 @@ public class MainActivity extends AppCompatActivity {
     LVChromeLogo mLVChromeLogo;
     LVBattery mLVBattery;
     LVWifi mLVWifi;
+
+    LVNews mLVNews;
     int mValueLVLineWithText = 0;
+    int mValueLVNews = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         mLVBattery.setValue(50);
         mLVBattery.setShowNum(false);
         mLVWifi = (LVWifi) findViewById(R.id.lv_wifi);
+        mLVNews = (LVNews) findViewById(R.id.lv_news);
+
 
     }
 
@@ -108,7 +115,12 @@ public class MainActivity extends AppCompatActivity {
             ((LVBattery) v).startAnim();
         } else if (v instanceof LVWifi) {
             ((LVWifi) v).startAnim();
+        } else if (v instanceof LVNews) {
+//            ((LVNews) v).startAnim();
+            startLVNewsAnim();
+
         }
+
 
     }
 
@@ -130,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
         mLVChromeLogo.startAnim();
         mLVBattery.startAnim();
         mLVWifi.startAnim();
+//        mLVNews.startAnim();
+        startLVNewsAnim();
     }
 
 
@@ -155,44 +169,80 @@ public class MainActivity extends AppCompatActivity {
         mLVChromeLogo.stopAnim();
         mLVBattery.stopAnim();
         mLVWifi.stopAnim();
-
-
+        stopLVNewsAnim();
     }
 
 
-    public Timer mTimer = new Timer();// 定时器
+    public Timer mTimerLVLineWithText = new Timer();// 定时器
+    public Timer mTimerLVNews = new Timer();// 定时器
+
 
     private void startLVLineWithTextAnim() {
-        if (mTimer != null) {
-
-            mTimer.cancel();// 退出之前的mTimer
+        mValueLVLineWithText = 0;
+        if (mTimerLVLineWithText != null) {
+            mTimerLVLineWithText.cancel();// 退出之前的mTimer
         }
-        mTimer = new Timer();// new一个Timer,否则会报错
-        timerTask();
+        mTimerLVLineWithText = new Timer();
+        timerTaskLVLineWithText();
     }
 
     private void stopLVLineWithTextAnim() {
-        if (mTimer != null) {
+        if (mTimerLVLineWithText != null) {
+            mTimerLVLineWithText.cancel();// 退出之前的mTimer
+            mLVNews.setValue(mValueLVNews);
+        }
+    }
 
-            mTimer.cancel();// 退出之前的mTimer
+
+    private void startLVNewsAnim() {
+        mValueLVNews = 0;
+        if (mTimerLVNews != null) {
+
+            mTimerLVNews.cancel();
+        }
+        mTimerLVNews = new Timer();
+        timerTaskLVNews();
+    }
+
+    private void stopLVNewsAnim() {
+        mLVNews.stopAnim();
+        if (mTimerLVNews != null) {
+            mTimerLVNews.cancel();
             mLVLineWithText.setValue(mValueLVLineWithText);
         }
     }
 
 
-    public void timerTask() {
-        mTimer.schedule(new TimerTask() {
+    public void timerTaskLVNews() {
+        mTimerLVNews.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (mValueLVNews < 100) {
+                    mValueLVNews++;
+                    Message msg = mHandle.obtainMessage(1);
+                    msg.arg1 = mValueLVNews;
+                    mHandle.sendMessage(msg);
+                } else {
+                    mTimerLVNews.cancel();
+                }
+            }
+        }, 0, 50);
+    }
+
+
+    public void timerTaskLVLineWithText() {
+        mTimerLVLineWithText.schedule(new TimerTask() {
             @Override
             public void run() {
                 if (mValueLVLineWithText < 100) {
 
                     mValueLVLineWithText++;
-                    Message msg = mHandle.obtainMessage();
+                    Message msg = mHandle.obtainMessage(2);
                     msg.arg1 = mValueLVLineWithText;
                     mHandle.sendMessage(msg);
 
                 } else {
-                    mTimer.cancel();
+                    mTimerLVLineWithText.cancel();
                 }
             }
         }, 0, 50);
@@ -204,7 +254,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            mLVLineWithText.setValue(msg.arg1);
+            if (msg.what == 2)
+                mLVLineWithText.setValue(msg.arg1);
+            else if (msg.what == 1) {
+                mLVNews.setValue(msg.arg1);
+            }
         }
     };
 
