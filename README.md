@@ -42,7 +42,14 @@ LVBattery
     LVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.VERTICAL);//LVBattery.BatteryOrientation.HORIZONTAL
     LVBattery.setShowNum(true);//show number in battery
 ```
-
+LVNews
+```
+   LVNews.setValue(50);//0-100
+```
+if value has 100,you want animation you can
+```
+   LVNews.startAnim();
+```
 
 
 other view
