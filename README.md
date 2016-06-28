@@ -36,9 +36,7 @@ LVFinePoiStar
 
 LVBattery
 
-![HORIZONTAL](https://github.com/ldoublem/LoadingView/blob/master/screen/bHORIZONTAL.png)
-
-![VERTICAL](https://github.com/ldoublem/LoadingView/blob/master/screen/bVERTICAL.png)
+![HORIZONTAL](https://github.com/ldoublem/LoadingView/blob/master/screen/bHORIZONTAL.png)![VERTICAL](https://github.com/ldoublem/LoadingView/blob/master/screen/bVERTICAL.png)
 
 ```
     LVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.VERTICAL);//LVBattery.BatteryOrientation.HORIZONTAL
