@@ -13,6 +13,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
+import com.ldoublem.loadingView.AnimableView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,7 @@ import java.util.List;
  * Created by lumingmin on 16/6/24.
  */
 
-public class LVFinePoiStar extends View {
+public class LVFinePoiStar extends View implements AnimableView {
     private float mWidth = 0f;
     private float mPadding = 0f;
     private Paint mPaintLine, mPaintCircle;

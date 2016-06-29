@@ -12,11 +12,13 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
+import com.ldoublem.loadingView.AnimableView;
+
 /**
  * Created by lumingmin on 16/6/20.
  */
 
-public class LVPlayBall extends View {
+public class LVPlayBall extends View implements AnimableView {
     private Paint mPaint, mPaintCircle, mPaintBall;
     private float mPaintStrokeWidth;
     private float mHigh = 0f;

@@ -12,11 +12,13 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 
+import com.ldoublem.loadingView.AnimableView;
+
 /**
  * Created by lumingmin on 16/6/20.
  */
 
-public class LVCircularJump extends View {
+public class LVCircularJump extends View implements AnimableView {
 
     private Paint mPaint;
 

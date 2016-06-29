@@ -13,11 +13,13 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
+import com.ldoublem.loadingView.AnimableView;
+
 /**
  * Created by lumingmin on 16/6/28.
  */
 
-public class LVBlock extends View {
+public class LVBlock extends View implements AnimableView {
     private Paint mPaint, mPaintShadow, mPaintLeft, mPaintRight;
     private float mWidth = 0f;
     float moveYtoCenter = 0f;

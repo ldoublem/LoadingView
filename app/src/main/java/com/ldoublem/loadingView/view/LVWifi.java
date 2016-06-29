@@ -12,11 +12,13 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
+import com.ldoublem.loadingView.AnimableView;
+
 /**
  * Created by lumingmin on 16/6/27.
  */
 
-public class LVWifi extends View {
+public class LVWifi extends View implements AnimableView {
     private float mWidth = 0f;
     private float mPadding = 0f;
     private Paint mPaint;

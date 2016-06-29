@@ -14,13 +14,15 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 
+import com.ldoublem.loadingView.AnimableView;
+
 import static android.R.style.Animation;
 
 /**
  * Created by lumingmin on 16/6/20.
  */
 
-public class LVCircular extends View {
+public class LVCircular extends View implements AnimableView {
 
     private Paint mPaint;
 
