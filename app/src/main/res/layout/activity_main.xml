@@ -225,6 +225,13 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     >
+
+                    <com.ldoublem.loadingView.view.LVNews
+                        android:layout_width="35dp"
+                        android:onClick="startAnim"
+                        android:id="@+id/lv_news"
+                        android:layout_height="35dp"/>
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -269,11 +276,12 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     >
-                    <com.ldoublem.loadingView.view.LVNews
-                        android:layout_width="40dp"
+                    <com.ldoublem.loadingView.view.LVBlock
+                        android:layout_width="100dp"
                         android:onClick="startAnim"
-                        android:id="@+id/lv_news"
-                        android:layout_height="40dp"/>
+                        android:id="@+id/lv_block"
+                        android:layout_height="100dp"/>
+
 
                 </LinearLayout>
 

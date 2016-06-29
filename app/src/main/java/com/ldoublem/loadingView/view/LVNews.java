@@ -300,6 +300,37 @@ public class LVNews extends View {
     }
 
 
+    private void drawShortLine(Canvas canvas, float line_width_short, int value, int positon) {
+
+        positon = positon - 1;
+
+
+
+        canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
+                mPadding + cornerRadius + cornerRadius - marggingLineV + rectFSquare.height() / 3 * positon,
+                mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH + line_width_short / 16.0f * value,
+                mPadding + cornerRadius + cornerRadius - marggingLineV + rectFSquare.height() / 3 * positon, mPaint);
+
+
+
+
+    }
+
+
+    private void drawlongLine(Canvas canvas, float line_width_long, int value, int positon) {
+        positon = positon - 4;
+        canvas.drawLine(mPadding + cornerRadius,
+                mPadding + cornerRadius + rectFSquare.height() / 3*positon + mWidth / 2 + marggingLineV,
+                mPadding + cornerRadius + line_width_long / 16.0f * (value),
+                mPadding + cornerRadius + rectFSquare.height() / 3*positon + mWidth / 2 + marggingLineV, mPaint);
+
+
+
+    }
+
+
+
+
     private void drawLine(Canvas canvas, int count, int mValue) {
 
 
@@ -309,111 +340,44 @@ public class LVNews extends View {
                 (mPadding + cornerRadius);
 
         if (count == 1) {
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV,
-                    mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH + line_width_short / 16.0f * mValue,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV, mPaint);
-
+            drawShortLine(canvas, line_width_short, mValue, 1);
         } else if (count == 2) {
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV, mPaint);
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + cornerRadius - marggingLineV,
-                    (mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH) + line_width_short / 16 * (mValue - 16),
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + cornerRadius - marggingLineV, mPaint);
+            drawShortLine(canvas, line_width_short, 16, 1);
+            drawShortLine(canvas, line_width_short, mValue - 16, 2);
+
+
         } else if (count == 3) {
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV, mPaint);
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + cornerRadius - marggingLineV, mPaint);
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() * 2 / 3 + cornerRadius - marggingLineV,
-                    mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH + line_width_short / 16.0f * (mValue - 32),
-                    mPadding + cornerRadius + rectFSquare.height() * 2 / 3 + cornerRadius - marggingLineV, mPaint);
+            drawShortLine(canvas, line_width_short, 16, 1);
+            drawShortLine(canvas, line_width_short, 16, 2);
+            drawShortLine(canvas, line_width_short, mValue-32, 3);
+
+
+
 
         } else if (count == 4) {
 
 
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV, mPaint);
+            drawShortLine(canvas, line_width_short, 16, 1);
+            drawShortLine(canvas, line_width_short, 16, 2);
+            drawShortLine(canvas, line_width_short, 16, 3);
+            drawlongLine(canvas,line_width_long,mValue-48,4);
 
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + cornerRadius - marggingLineV, mPaint);
-
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() * 2 / 3 + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() * 2 / 3 + cornerRadius - marggingLineV, mPaint);
-
-
-            canvas.drawLine(mPadding + cornerRadius,
-                    mPadding + cornerRadius + mWidth / 2 + marggingLineV,
-                    (mPadding + cornerRadius) + line_width_long / 16.0f * (mValue - 48),
-                    mPadding + cornerRadius + mWidth / 2 + marggingLineV, mPaint);
         } else if (count == 5) {
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV, mPaint);
-
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + cornerRadius - marggingLineV, mPaint);
-
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() * 2 / 3 + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() * 2 / 3 + cornerRadius - marggingLineV, mPaint);
 
 
-            canvas.drawLine(mPadding + cornerRadius,
-                    mPadding + cornerRadius + mWidth / 2 + marggingLineV,
-                    mWidth - mPadding - cornerRadius,
-                    mPadding + cornerRadius + mWidth / 2 + marggingLineV, mPaint);
+            drawShortLine(canvas, line_width_short, 16, 1);
+            drawShortLine(canvas, line_width_short, 16, 2);
+            drawShortLine(canvas, line_width_short, 16, 3);
+            drawlongLine(canvas,line_width_long,16,4);
+            drawlongLine(canvas,line_width_long,mValue-64,5);
 
-            canvas.drawLine(mPadding + cornerRadius,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + mWidth / 2 + marggingLineV,
-                    mPadding + cornerRadius + line_width_long / 16.0f * (mValue - 64),
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + mWidth / 2 + marggingLineV, mPaint);
 
         } else if (count == 6) {
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + cornerRadius - marggingLineV, mPaint);
-
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + cornerRadius - marggingLineV, mPaint);
-
-            canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() * 2 / 3 + cornerRadius - marggingLineV,
-                    mWidth - mPadding - cornerRadius - marggingLineH,
-                    mPadding + cornerRadius + rectFSquare.height() * 2 / 3 + cornerRadius - marggingLineV, mPaint);
-
-
-            canvas.drawLine(mPadding + cornerRadius,
-                    mPadding + cornerRadius + mWidth / 2 + marggingLineV,
-                    mWidth - mPadding - cornerRadius,
-                    mPadding + cornerRadius + mWidth / 2 + marggingLineV, mPaint);
-
-            canvas.drawLine(mPadding + cornerRadius,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + mWidth / 2 + marggingLineV,
-                    mWidth - mPadding - cornerRadius,
-                    mPadding + cornerRadius + rectFSquare.height() / 3 + mWidth / 2 + marggingLineV, mPaint);
-
+            drawShortLine(canvas, line_width_short, 16, 1);
+            drawShortLine(canvas, line_width_short, 16, 2);
+            drawShortLine(canvas, line_width_short, 16, 3);
+            drawlongLine(canvas,line_width_long,16,4);
+            drawlongLine(canvas,line_width_long,16,5);
             canvas.drawLine(mPadding + cornerRadius,
                     mPadding + cornerRadius + rectFSquare.height() / 3 * 2 + mWidth / 2 + marggingLineV,
                     mPadding + cornerRadius + line_width_long / 20.0f * (mValue - 80),

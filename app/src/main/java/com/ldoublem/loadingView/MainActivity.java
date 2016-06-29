@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ldoublem.loadingView.view.LVBattery;
+import com.ldoublem.loadingView.view.LVBlock;
 import com.ldoublem.loadingView.view.LVChromeLogo;
 import com.ldoublem.loadingView.view.LVCircular;
 import com.ldoublem.loadingView.view.LVCircularCD;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     LVWifi mLVWifi;
 
     LVNews mLVNews;
+    LVBlock mLVBlock;
     int mValueLVLineWithText = 0;
     int mValueLVNews = 0;
 
@@ -77,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
         mLVBattery.setShowNum(false);
         mLVWifi = (LVWifi) findViewById(R.id.lv_wifi);
         mLVNews = (LVNews) findViewById(R.id.lv_news);
-
+        mLVBlock= (LVBlock) findViewById(R.id.lv_block);
+//        mLVBlock.isShadow(false);
 
     }
 
@@ -118,12 +121,14 @@ public class MainActivity extends AppCompatActivity {
         } else if (v instanceof LVNews) {
 //            ((LVNews) v).startAnim();
             startLVNewsAnim();
+        }
+        else if (v instanceof LVBlock) {
+            ((LVBlock) v).startAnim();
 
         }
 
 
     }
-
 
     public void startAnimAll(View v) {
         mLVCircular.startAnim();
@@ -144,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         mLVWifi.startAnim();
 //        mLVNews.startAnim();
         startLVNewsAnim();
+        mLVBlock.startAnim();
     }
 
 
@@ -170,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
         mLVBattery.stopAnim();
         mLVWifi.stopAnim();
         stopLVNewsAnim();
+        mLVBlock.stopAnim();
     }
 
 
@@ -226,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                     mTimerLVNews.cancel();
                 }
             }
-        }, 0, 50);
+        }, 0, 10);
     }
 
 
