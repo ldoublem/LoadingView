@@ -50,6 +50,12 @@ if value has 100,you want animation you can
 ```
    LVNews.startAnim();
 ```
+LVBlock
+```
+   LVBlock.isShadow(false);//show shadow true or false
+```
+
+
 
 
 other view
