@@ -84,50 +84,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void startAnim(View v) {
-
+    public void startAnim(View view) {
         stopAll();
-        if (v instanceof LVCircular) {
-            ((LVCircular) v).startAnim();
-        } else if (v instanceof LVCircularCD) {
-            ((LVCircularCD) v).startAnim();
-        } else if (v instanceof LVCircularSmile) {
-            ((LVCircularSmile) v).startAnim();
-        } else if (v instanceof LVCircularRing) {
-            ((LVCircularRing) v).startAnim();
-        } else if (v instanceof LVCircularZoom) {
-            ((LVCircularZoom) v).startAnim();
-        } else if (v instanceof LVCircularJump) {
-            ((LVCircularJump) v).startAnim();
-        } else if (v instanceof LVEatBeans) {
-            ((LVEatBeans) v).startAnim();
-        } else if (v instanceof LVPlayBall) {
-            ((LVPlayBall) v).startAnim();
-        } else if (v instanceof LVLineWithText) {
+        if(isSpecialAnimation(view)) {
+            handleSpecialAnimation(view);
+        }
+
+        AnimableView animableView = (AnimableView) view;
+        animableView.startAnim();
+    }
+
+    private void handleSpecialAnimation(View view) {
+        if (view instanceof LVLineWithText) {
             startLVLineWithTextAnim();
-        } else if (v instanceof LVGears) {
-            ((LVGears) v).startAnim();
-        } else if (v instanceof LVGearsTwo) {
-            ((LVGearsTwo) v).startAnim();
-        } else if (v instanceof LVFinePoiStar) {
-            ((LVFinePoiStar) v).setDrawPath(false);
-            ((LVFinePoiStar) v).startAnim();
-        } else if (v instanceof LVChromeLogo) {
-            ((LVChromeLogo) v).startAnim();
-        } else if (v instanceof LVBattery) {
-            ((LVBattery) v).startAnim();
-        } else if (v instanceof LVWifi) {
-            ((LVWifi) v).startAnim();
-        } else if (v instanceof LVNews) {
-//            ((LVNews) v).startAnim();
+        } else if (view instanceof LVFinePoiStar) {
+            ((LVFinePoiStar) view).setDrawPath(false);
+            ((LVFinePoiStar) view).startAnim();
+        } else if (view instanceof LVNews) {
             startLVNewsAnim();
         }
-        else if (v instanceof LVBlock) {
-            ((LVBlock) v).startAnim();
+    }
 
-        }
-
-
+    private boolean isSpecialAnimation(View view) {
+        return view instanceof LVLineWithText
+                || view instanceof LVFinePoiStar
+                || view instanceof LVNews;
     }
 
     public void startAnimAll(View v) {
