@@ -1,10 +1,9 @@
 package com.ldoublem.loadingView;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
 import com.ldoublem.loadingView.view.LVBattery;
@@ -74,22 +73,20 @@ public class MainActivity extends AppCompatActivity {
         mLVChromeLogo = (LVChromeLogo) findViewById(R.id.lv_chromeLogo);
         mLVBattery = (LVBattery) findViewById(R.id.lv_battery);
         mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.VERTICAL);
-//        mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.HORIZONTAL);
         mLVBattery.setValue(50);
         mLVBattery.setShowNum(false);
         mLVWifi = (LVWifi) findViewById(R.id.lv_wifi);
         mLVNews = (LVNews) findViewById(R.id.lv_news);
         mLVBlock= (LVBlock) findViewById(R.id.lv_block);
-//        mLVBlock.isShadow(false);
-
     }
 
     public void startAnim(View view) {
         stopAll();
+
         if(isSpecialAnimation(view)) {
             handleSpecialAnimation(view);
+            return;
         }
-
         AnimableView animableView = (AnimableView) view;
         animableView.startAnim();
     }
@@ -128,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
         mLVChromeLogo.startAnim();
         mLVBattery.startAnim();
         mLVWifi.startAnim();
-//        mLVNews.startAnim();
         startLVNewsAnim();
         mLVBlock.startAnim();
     }
