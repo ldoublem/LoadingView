@@ -153,10 +153,10 @@
                     >
 
                     <com.ldoublem.loadingView.view.LVWifi
-                        android:layout_width="50dp"
-                        android:onClick="startAnim"
                         android:id="@+id/lv_wifi"
-                        android:layout_height="50dp"/>
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:onClick="startAnim"/>
 
 
                 </LinearLayout>
@@ -227,10 +227,10 @@
                     >
 
                     <com.ldoublem.loadingView.view.LVNews
-                        android:layout_width="35dp"
-                        android:onClick="startAnim"
                         android:id="@+id/lv_news"
-                        android:layout_height="35dp"/>
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:onClick="startAnim"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -276,11 +276,12 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     >
+
                     <com.ldoublem.loadingView.view.LVBlock
-                        android:layout_width="100dp"
-                        android:onClick="startAnim"
                         android:id="@+id/lv_block"
-                        android:layout_height="100dp"/>
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:onClick="startAnim"/>
 
 
                 </LinearLayout>
@@ -292,7 +293,25 @@
                     android:gravity="center"
                     >
 
+
                 </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <com.ldoublem.loadingView.view.LVGhost
+                    android:layout_width="200dp"
+                    android:id="@+id/lv_ghost"
+
+                    android:onClick="startAnim"
+                    android:layout_height="120dp"
+                    />
+
 
             </LinearLayout>
 
@@ -366,6 +385,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"
         android:onClick="startAnimAll"
         android:text="start all"/>
 
@@ -376,6 +397,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:onClick="stopAnim"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/white"
+
         android:text="stop"/>
 
 

@@ -20,6 +20,7 @@ import com.ldoublem.loadingView.view.LVEatBeans;
 import com.ldoublem.loadingView.view.LVFinePoiStar;
 import com.ldoublem.loadingView.view.LVGears;
 import com.ldoublem.loadingView.view.LVGearsTwo;
+import com.ldoublem.loadingView.view.LVGhost;
 import com.ldoublem.loadingView.view.LVLineWithText;
 import com.ldoublem.loadingView.view.LVNews;
 import com.ldoublem.loadingView.view.LVPlayBall;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     LVNews mLVNews;
     LVBlock mLVBlock;
+    LVGhost mLVGhost;
     int mValueLVLineWithText = 0;
     int mValueLVNews = 0;
 
@@ -79,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
         mLVBattery.setShowNum(false);
         mLVWifi = (LVWifi) findViewById(R.id.lv_wifi);
         mLVNews = (LVNews) findViewById(R.id.lv_news);
-        mLVBlock= (LVBlock) findViewById(R.id.lv_block);
+        mLVBlock = (LVBlock) findViewById(R.id.lv_block);
 //        mLVBlock.isShadow(false);
+        mLVGhost = (LVGhost) findViewById(R.id.lv_ghost);
 
     }
 
@@ -121,10 +124,12 @@ public class MainActivity extends AppCompatActivity {
         } else if (v instanceof LVNews) {
 //            ((LVNews) v).startAnim();
             startLVNewsAnim();
-        }
-        else if (v instanceof LVBlock) {
+        } else if (v instanceof LVBlock) {
             ((LVBlock) v).startAnim();
 
+        }else if(v instanceof LVGhost)
+        {
+            ((LVGhost) v).startAnim();
         }
 
 
@@ -150,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
 //        mLVNews.startAnim();
         startLVNewsAnim();
         mLVBlock.startAnim();
+        mLVGhost.startAnim();
     }
 
 
@@ -177,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         mLVWifi.stopAnim();
         stopLVNewsAnim();
         mLVBlock.stopAnim();
+        mLVGhost.stopAnim();
     }
 
 

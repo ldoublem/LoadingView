@@ -426,7 +426,14 @@ public class LVNews extends View {
             valueAnimator.end();
             mAnimatedValue = 0f;
             mStep = 1;
-            postInvalidate();
+            invalidate();
+        }
+        else
+        {
+            mAnimatedValue = 0f;
+            mStep = 1;
+            mValue=100;
+            invalidate();
         }
     }
 
