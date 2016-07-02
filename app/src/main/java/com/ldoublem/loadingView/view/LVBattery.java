@@ -224,7 +224,7 @@ public class LVBattery extends View {
         if (valueAnimator != null) {
             clearAnimation();
 
-            valueAnimator.setRepeatCount(1);
+            valueAnimator.setRepeatCount(0);
             valueAnimator.cancel();
             valueAnimator.end();
             mAnimatedValue = 0f;

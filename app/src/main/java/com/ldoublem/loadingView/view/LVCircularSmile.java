@@ -94,7 +94,7 @@ public class LVCircularSmile extends View {
             isSmile = false;
             mAnimatedValue = 0f;
             startAngle = 0f;
-            valueAnimator.setRepeatCount(1);
+            valueAnimator.setRepeatCount(0);
             valueAnimator.cancel();
             valueAnimator.end();
         }

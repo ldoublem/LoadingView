@@ -193,7 +193,7 @@ public class LVGears extends View {
     public void stopAnim() {
         if (valueAnimator != null) {
             clearAnimation();
-            valueAnimator.setRepeatCount(1);
+            valueAnimator.setRepeatCount(0);
             valueAnimator.cancel();
             valueAnimator.end();
             postInvalidate();

@@ -93,7 +93,7 @@ public class LVCircularZoom extends View {
             clearAnimation();
             mAnimatedValue = 0f;
             mJumpValue = 0;
-            valueAnimator.setRepeatCount(1);
+            valueAnimator.setRepeatCount(0);
             valueAnimator.cancel();
             valueAnimator.end();
         }

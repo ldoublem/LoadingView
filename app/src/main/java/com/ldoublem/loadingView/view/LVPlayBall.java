@@ -114,7 +114,7 @@ public class LVPlayBall extends View {
             clearAnimation();
             quadToStart = mHigh / 2;
             ballY = mHigh / 2;
-            valueAnimator.setRepeatCount(1);
+            valueAnimator.setRepeatCount(0);
             valueAnimator.cancel();
             valueAnimator.end();
         }
