@@ -1,11 +1,12 @@
-apply plugin: 'com.android.application'
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.ldoublem'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
     defaultConfig {
-        applicationId "com.ldoublem.loadingView"
+//        applicationId "com.ldoublem.loadingView"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
