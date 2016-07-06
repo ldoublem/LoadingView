@@ -1,5 +1,6 @@
-apply plugin: 'com.android.application'
-
+//apply plugin: 'com.android.application'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.ldoublem'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
