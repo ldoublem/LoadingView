@@ -13,6 +13,11 @@ screenshot
 
 ![chromelogo](https://github.com/ldoublem/LoadingView/blob/master/screen/chromelogo.png)
 
+![mac](https://github.com/ldoublem/LoadingView/blob/master/screen/computer.png)
+
+
+
+
 
 ## LVChromeLogo canvas 
 ```
