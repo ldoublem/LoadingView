@@ -11,7 +11,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
 
         <LinearLayout
@@ -293,32 +294,38 @@
                     android:gravity="center"
                     >
 
+                    <com.ldoublem.loadingView.view.LVFunnyBar
+                        android:id="@+id/lv_funnybar"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:onClick="startAnim"/>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:gravity="center_vertical"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <com.ldoublem.loadingView.view.LVGhost
-                    android:layout_width="200dp"
-                    android:id="@+id/lv_ghost"
 
-                    android:onClick="startAnim"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    />
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.ldoublem.loadingView.view.LVGhost
+                        android:id="@+id/lv_ghost"
+                        android:layout_width="200dp"
+                        android:layout_height="120dp"
+                        android:onClick="startAnim"
+                        />
 
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal">
+                </LinearLayout>
 
 
                 <LinearLayout
@@ -326,22 +333,36 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    >
+                    android:orientation="horizontal">
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:background="@android:color/white"
+                >
+
+                <com.ldoublem.loadingView.view.LVComputer
+                    android:layout_width="350dp"
+                    android:layout_centerInParent="true"
+                    android:layout_height="170dp"/>
 
                     <com.ldoublem.loadingView.view.LVLineWithText
                         android:id="@+id/lv_linetext"
-                        android:layout_width="match_parent"
-
+                        android:layout_width="150dp"
+                        android:layout_centerHorizontal="true"
                         android:layout_height="50dp"
+                        android:layout_marginTop="200dp"
                         android:onClick="startAnim"
                         />
 
-                </LinearLayout>
 
 
-            </LinearLayout>
+
+            </RelativeLayout>
 
 
             <LinearLayout
@@ -378,17 +399,16 @@
 
     </ScrollView>
 
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
-        android:textColor="@android:color/white"
         android:background="@android:color/transparent"
         android:onClick="startAnimAll"
-        android:text="start all"/>
+        android:text="start all"
+        android:textColor="@android:color/white"/>
 
     <Button
 
@@ -396,11 +416,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
-        android:onClick="stopAnim"
         android:background="@android:color/transparent"
-        android:textColor="@android:color/white"
+        android:onClick="stopAnim"
+        android:text="stop"
 
-        android:text="stop"/>
+        android:textColor="@android:color/white"/>
 
 
 </RelativeLayout>
