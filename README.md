@@ -29,6 +29,13 @@ use canvas paint a view like chrome logo
 4,Draw center circle
 ```
 
+## LVComputer canvas 
+use canvas paint a view like Mac pro
+
+
+
+
+
 ## LoadingView Usage 使用
 LVLineWithText
 ```
