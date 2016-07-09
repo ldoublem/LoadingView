@@ -29,11 +29,12 @@ use canvas paint a view like chrome logo
 4,Draw center circle
 ```
 
-#https://github.com/ldoublem/LoadingView# LVComputer canvas 
-#https://github.com/ldoublem/LoadingView# LVComputerDesktop canvas 
-#https://github.com/ldoublem/LoadingView# LVComputerIpad canvas 
+## LVComputer canvas 
+## LVComputerDesktop canvas 
+## LVComputerIpad canvas 
 
 use canvas paint a view like Mac product
+[demo](https://github.com/ldoublem/AppleView)
 
 
 
