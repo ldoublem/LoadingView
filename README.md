@@ -30,7 +30,10 @@ use canvas paint a view like chrome logo
 ```
 
 ## LVComputer canvas 
-use canvas paint a view like Mac pro
+## LVComputerDesktop canvas 
+## LVComputerIpad canvas 
+
+use canvas paint a view like Mac product
 
 
 
