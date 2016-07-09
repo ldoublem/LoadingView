@@ -29,9 +29,9 @@ use canvas paint a view like chrome logo
 4,Draw center circle
 ```
 
-## LVComputer canvas 
-## LVComputerDesktop canvas 
-## LVComputerIpad canvas 
+#https://github.com/ldoublem/LoadingView# LVComputer canvas 
+#https://github.com/ldoublem/LoadingView# LVComputerDesktop canvas 
+#https://github.com/ldoublem/LoadingView# LVComputerIpad canvas 
 
 use canvas paint a view like Mac product
 
