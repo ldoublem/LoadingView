@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.ldoublem.loadingView.view.LVBattery;
 import com.ldoublem.loadingView.view.LVBlock;
@@ -18,6 +19,7 @@ import com.ldoublem.loadingView.view.LVCircularSmile;
 import com.ldoublem.loadingView.view.LVCircularZoom;
 import com.ldoublem.loadingView.view.LVEatBeans;
 import com.ldoublem.loadingView.view.LVFinePoiStar;
+import com.ldoublem.loadingView.view.LVFunnyBar;
 import com.ldoublem.loadingView.view.LVGears;
 import com.ldoublem.loadingView.view.LVGearsTwo;
 import com.ldoublem.loadingView.view.LVGhost;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     LVNews mLVNews;
     LVBlock mLVBlock;
     LVGhost mLVGhost;
+//    LVFunnyBar mLVFunnyBar;
     int mValueLVLineWithText = 0;
     int mValueLVNews = 0;
 
@@ -60,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
+
         setContentView(R.layout.activity_main);
         mLVPlayBall = (LVPlayBall) findViewById(R.id.lv_playball);
         mLVCircularRing = (LVCircularRing) findViewById(R.id.lv_circularring);
@@ -77,13 +83,15 @@ public class MainActivity extends AppCompatActivity {
         mLVBattery = (LVBattery) findViewById(R.id.lv_battery);
         mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.VERTICAL);
 //        mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.HORIZONTAL);
-        mLVBattery.setValue(50);
         mLVBattery.setShowNum(false);
         mLVWifi = (LVWifi) findViewById(R.id.lv_wifi);
         mLVNews = (LVNews) findViewById(R.id.lv_news);
         mLVBlock = (LVBlock) findViewById(R.id.lv_block);
 //        mLVBlock.isShadow(false);
         mLVGhost = (LVGhost) findViewById(R.id.lv_ghost);
+//        mLVFunnyBar=(LVFunnyBar)findViewById(R.id.lv_funnybar);
+        mLVLineWithText.setValue(50);
+
 
     }
 
@@ -130,6 +138,9 @@ public class MainActivity extends AppCompatActivity {
         }else if(v instanceof LVGhost)
         {
             ((LVGhost) v).startAnim();
+        }else if(v instanceof LVFunnyBar)
+        {
+            ((LVFunnyBar) v).startAnim();
         }
 
 
@@ -156,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         startLVNewsAnim();
         mLVBlock.startAnim();
         mLVGhost.startAnim();
+//        mLVFunnyBar.startAnim();
     }
 
 
@@ -184,6 +196,8 @@ public class MainActivity extends AppCompatActivity {
         stopLVNewsAnim();
         mLVBlock.stopAnim();
         mLVGhost.stopAnim();
+//        mLVFunnyBar.stopAnim();
+
     }
 
 

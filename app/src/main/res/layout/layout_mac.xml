@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="25dp"
+            android:paddingTop="25dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.ldoublem.loadingView.view.LVComputerDesktop
+                    android:layout_width="370dp"
+                    android:layout_height="210dp"
+                    android:layout_marginLeft="-45dp"
+                    />
+
+                <com.ldoublem.loadingView.view.LVComputer
+                    android:layout_width="240dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="8dp"
+                    />
+
+                <com.ldoublem.loadingView.view.LVComputerIpad
+                    android:layout_width="60dp"
+                    android:layout_height="85dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="18dp"/>
+
+            </FrameLayout>
+            <com.ldoublem.loadingView.view.LVComputerIpad
+                android:id="@+id/lv_computer_ipad"
+                android:layout_width="84dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="25dp"
+                android:onClick="startAnim"
+
+                />
+
+
+            <com.ldoublem.loadingView.view.LVComputer
+                android:id="@+id/lv_computer"
+                android:layout_width="240dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="25dp"
+                android:onClick="startAnim"
+
+                />
+            <com.ldoublem.loadingView.view.LVComputerDesktop
+                android:id="@+id/lv_computer_desktop"
+                android:layout_width="370dp"
+                android:layout_height="210dp"
+                android:layout_marginTop="25dp"
+                android:onClick="startAnim"
+                />
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
