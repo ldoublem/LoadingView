@@ -10,7 +10,6 @@
     tools:context="com.ldoublem.loadingView.MainActivity">
 
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -265,11 +264,6 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVBattery
-                        android:id="@+id/lv_battery"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:onClick="startAnim"/>
 
                 </LinearLayout>
 
@@ -295,6 +289,12 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     >
+
+                    <com.ldoublem.loadingView.view.LVFunnyBar
+                        android:id="@+id/lv_funnybar"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:onClick="startAnim"/>
 
 
                 </LinearLayout>
@@ -334,32 +334,6 @@
 
                 </LinearLayout>
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:background="@android:color/white"
-                >
-
-                <com.ldoublem.loadingView.view.LVComputer
-                    android:layout_width="350dp"
-                    android:layout_height="170dp"
-                    android:layout_centerInParent="true"/>
-
-
-                <com.ldoublem.loadingView.view.LVLineWithText
-                    android:id="@+id/lv_linetext"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="200dp"
-                    android:onClick="startAnim"
-                    />
-
-
-            </RelativeLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -387,6 +361,54 @@
 
 
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="370dp"
+                android:background="@android:color/white"
+                >
+
+                <com.ldoublem.loadingView.view.LVComputerDesktop
+                    android:layout_width="370dp"
+                    android:layout_height="210dp"
+                    android:layout_centerInParent="true"/>
+
+                <com.ldoublem.loadingView.view.LVBattery
+                    android:id="@+id/lv_battery"
+                    android:layout_centerInParent="true"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:onClick="startAnim"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:background="@android:color/white"
+                >
+
+                <com.ldoublem.loadingView.view.LVComputer
+                    android:layout_width="350dp"
+                    android:layout_height="170dp"
+                    android:layout_centerInParent="true"/>
+
+
+                <com.ldoublem.loadingView.view.LVLineWithText
+                    android:id="@+id/lv_linetext"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="175dp"
+                    android:onClick="startAnim"
+                    />
+
+
+            </RelativeLayout>
+
+
+
 
 
         </LinearLayout>

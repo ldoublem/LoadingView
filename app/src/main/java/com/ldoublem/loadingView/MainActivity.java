@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     LVNews mLVNews;
     LVBlock mLVBlock;
     LVGhost mLVGhost;
-//    LVFunnyBar mLVFunnyBar;
+    LVFunnyBar mLVFunnyBar;
     int mValueLVLineWithText = 0;
     int mValueLVNews = 0;
 
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         mLVFinePoiStar = (LVFinePoiStar) findViewById(R.id.lv_finePoiStar);
         mLVChromeLogo = (LVChromeLogo) findViewById(R.id.lv_chromeLogo);
         mLVBattery = (LVBattery) findViewById(R.id.lv_battery);
-        mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.VERTICAL);
+        mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.HORIZONTAL);
 //        mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.HORIZONTAL);
         mLVBattery.setShowNum(false);
         mLVWifi = (LVWifi) findViewById(R.id.lv_wifi);
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         mLVBlock = (LVBlock) findViewById(R.id.lv_block);
 //        mLVBlock.isShadow(false);
         mLVGhost = (LVGhost) findViewById(R.id.lv_ghost);
-//        mLVFunnyBar=(LVFunnyBar)findViewById(R.id.lv_funnybar);
+        mLVFunnyBar=(LVFunnyBar)findViewById(R.id.lv_funnybar);
         mLVLineWithText.setValue(50);
 
 
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         startLVNewsAnim();
         mLVBlock.startAnim();
         mLVGhost.startAnim();
-//        mLVFunnyBar.startAnim();
+        mLVFunnyBar.startAnim();
     }
 
 
@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         stopLVNewsAnim();
         mLVBlock.stopAnim();
         mLVGhost.stopAnim();
-//        mLVFunnyBar.stopAnim();
+        mLVFunnyBar.stopAnim();
 
     }
 
