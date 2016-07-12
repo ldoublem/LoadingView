@@ -5,7 +5,7 @@ a simple loadingview for android with animation
 简单的带有动画效果的加载控件
 
 
-screenshot
+#Preview
 
 
 
@@ -14,8 +14,10 @@ screenshot
 ![chromelogo](https://github.com/ldoublem/LoadingView/blob/master/screen/chromelogo.png)
 
 ![mac](https://github.com/ldoublem/LoadingView/blob/master/screen/computer.png)
-
-
+---
+#Gradle
+compile 'com.ldoublem.loadingview:loadingviewlib:0.0.1'
+---
 
 
 
