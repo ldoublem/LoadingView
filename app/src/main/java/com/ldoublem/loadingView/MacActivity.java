@@ -1,37 +1,15 @@
 package com.ldoublem.loadingView;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.ldoublem.loadingView.view.LVBattery;
-import com.ldoublem.loadingView.view.LVBlock;
-import com.ldoublem.loadingView.view.LVChromeLogo;
-import com.ldoublem.loadingView.view.LVCircular;
-import com.ldoublem.loadingView.view.LVCircularCD;
-import com.ldoublem.loadingView.view.LVCircularJump;
-import com.ldoublem.loadingView.view.LVCircularRing;
-import com.ldoublem.loadingView.view.LVCircularSmile;
-import com.ldoublem.loadingView.view.LVCircularZoom;
-import com.ldoublem.loadingView.view.LVComputer;
-import com.ldoublem.loadingView.view.LVComputerDesktop;
-import com.ldoublem.loadingView.view.LVComputerIpad;
-import com.ldoublem.loadingView.view.LVEatBeans;
-import com.ldoublem.loadingView.view.LVFinePoiStar;
-import com.ldoublem.loadingView.view.LVFunnyBar;
-import com.ldoublem.loadingView.view.LVGears;
-import com.ldoublem.loadingView.view.LVGearsTwo;
-import com.ldoublem.loadingView.view.LVGhost;
-import com.ldoublem.loadingView.view.LVLineWithText;
-import com.ldoublem.loadingView.view.LVNews;
-import com.ldoublem.loadingView.view.LVPlayBall;
-import com.ldoublem.loadingView.view.LVWifi;
+import com.ldoublem.appleviewlib.LVComputer;
+import com.ldoublem.appleviewlib.LVComputerDesktop;
+import com.ldoublem.appleviewlib.LVComputerIpad;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class MacActivity extends AppCompatActivity {

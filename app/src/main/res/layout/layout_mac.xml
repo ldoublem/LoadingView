@@ -20,20 +20,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.ldoublem.loadingView.view.LVComputerDesktop
+                <com.ldoublem.appleviewlib.LVComputerDesktop
                     android:layout_width="370dp"
                     android:layout_height="210dp"
                     android:layout_marginLeft="-45dp"
                     />
 
-                <com.ldoublem.loadingView.view.LVComputer
+                <com.ldoublem.appleviewlib.LVComputer
                     android:layout_width="240dp"
                     android:layout_height="120dp"
                     android:layout_gravity="bottom|right"
                     android:layout_marginBottom="8dp"
                     />
 
-                <com.ldoublem.loadingView.view.LVComputerIpad
+                <com.ldoublem.appleviewlib.LVComputerIpad
                     android:layout_width="60dp"
                     android:layout_height="85dp"
                     android:layout_gravity="bottom"
@@ -41,7 +41,7 @@
                     android:layout_marginLeft="18dp"/>
 
             </FrameLayout>
-            <com.ldoublem.loadingView.view.LVComputerIpad
+            <com.ldoublem.appleviewlib.LVComputerIpad
                 android:id="@+id/lv_computer_ipad"
                 android:layout_width="84dp"
                 android:layout_height="120dp"
@@ -51,7 +51,7 @@
                 />
 
 
-            <com.ldoublem.loadingView.view.LVComputer
+            <com.ldoublem.appleviewlib.LVComputer
                 android:id="@+id/lv_computer"
                 android:layout_width="240dp"
                 android:layout_height="120dp"
@@ -59,7 +59,7 @@
                 android:onClick="startAnim"
 
                 />
-            <com.ldoublem.loadingView.view.LVComputerDesktop
+            <com.ldoublem.appleviewlib.LVComputerDesktop
                 android:id="@+id/lv_computer_desktop"
                 android:layout_width="370dp"
                 android:layout_height="210dp"

@@ -33,7 +33,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVCircularCD
+                    <com.ldoublem.loadingviewlib.LVCircularCD
                         android:id="@+id/lv_circularCD"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -47,7 +47,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVCircularRing
+                    <com.ldoublem.loadingviewlib.LVCircularRing
                         android:id="@+id/lv_circularring"
                         android:layout_width="50dp"
 
@@ -64,7 +64,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVCircular
+                    <com.ldoublem.loadingviewlib.LVCircular
                         android:id="@+id/lv_circular"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -80,7 +80,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVFinePoiStar
+                    <com.ldoublem.loadingviewlib.LVFinePoiStar
                         android:id="@+id/lv_finePoiStar"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -104,7 +104,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVCircularSmile
+                    <com.ldoublem.loadingviewlib.LVCircularSmile
                         android:id="@+id/lv_circularSmile"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -121,7 +121,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVGears
+                    <com.ldoublem.loadingviewlib.LVGears
                         android:id="@+id/lv_gears"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -137,7 +137,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVGearsTwo
+                    <com.ldoublem.loadingviewlib.LVGearsTwo
                         android:id="@+id/lv_gears_two"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
@@ -154,7 +154,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVWifi
+                    <com.ldoublem.loadingviewlib.LVWifi
                         android:id="@+id/lv_wifi"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -177,7 +177,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVCircularJump
+                    <com.ldoublem.loadingviewlib.LVCircularJump
                         android:id="@+id/lv_circularJump"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -194,7 +194,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVCircularZoom
+                    <com.ldoublem.loadingviewlib.LVCircularZoom
                         android:id="@+id/lv_circularZoom"
                         android:layout_width="50dp"
 
@@ -211,7 +211,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVPlayBall
+                    <com.ldoublem.loadingviewlib.LVPlayBall
                         android:id="@+id/lv_playball"
                         android:layout_width="50dp"
 
@@ -228,7 +228,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVNews
+                    <com.ldoublem.loadingviewlib.LVNews
                         android:id="@+id/lv_news"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -249,7 +249,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVChromeLogo
+                    <com.ldoublem.loadingviewlib.LVChromeLogo
                         android:id="@+id/lv_chromeLogo"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -274,7 +274,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVBlock
+                    <com.ldoublem.loadingviewlib.LVBlock
                         android:id="@+id/lv_block"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
@@ -290,7 +290,7 @@
                     android:gravity="center"
                     >
 
-                    <com.ldoublem.loadingView.view.LVFunnyBar
+                    <com.ldoublem.loadingviewlib.LVFunnyBar
                         android:id="@+id/lv_funnybar"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
@@ -313,7 +313,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <com.ldoublem.loadingView.view.LVGhost
+                    <com.ldoublem.loadingviewlib.LVGhost
                         android:id="@+id/lv_ghost"
                         android:layout_width="200dp"
                         android:layout_height="120dp"
@@ -349,7 +349,7 @@
                     android:paddingRight="20dp"
                     >
 
-                    <com.ldoublem.loadingView.view.LVEatBeans
+                    <com.ldoublem.loadingviewlib.LVEatBeans
                         android:id="@+id/lv_eatBeans"
                         android:layout_width="match_parent"
 
@@ -368,12 +368,12 @@
                 android:background="@android:color/white"
                 >
 
-                <com.ldoublem.loadingView.view.LVComputerDesktop
+                <com.ldoublem.appleviewlib.LVComputerDesktop
                     android:layout_width="370dp"
                     android:layout_height="210dp"
                     android:layout_centerInParent="true"/>
 
-                <com.ldoublem.loadingView.view.LVBattery
+                <com.ldoublem.loadingviewlib.LVBattery
                     android:id="@+id/lv_battery"
                     android:layout_centerInParent="true"
                     android:layout_width="65dp"
@@ -389,13 +389,13 @@
                 android:background="@android:color/white"
                 >
 
-                <com.ldoublem.loadingView.view.LVComputer
+                <com.ldoublem.appleviewlib.LVComputer
                     android:layout_width="350dp"
                     android:layout_height="170dp"
                     android:layout_centerInParent="true"/>
 
 
-                <com.ldoublem.loadingView.view.LVLineWithText
+                <com.ldoublem.loadingviewlib.LVLineWithText
                     android:id="@+id/lv_linetext"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
@@ -425,7 +425,7 @@
         android:background="@android:color/transparent"
         android:onClick="startAnimAll"
         android:text="start all"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/black"/>
 
     <Button
 
@@ -437,7 +437,7 @@
         android:onClick="stopAnim"
         android:text="stop"
 
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/black"/>
 
 
 </RelativeLayout>

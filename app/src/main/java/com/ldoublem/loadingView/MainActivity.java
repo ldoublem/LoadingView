@@ -8,28 +8,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.ldoublem.loadingView.view.LVBattery;
-import com.ldoublem.loadingView.view.LVBlock;
-import com.ldoublem.loadingView.view.LVChromeLogo;
-import com.ldoublem.loadingView.view.LVCircular;
-import com.ldoublem.loadingView.view.LVCircularCD;
-import com.ldoublem.loadingView.view.LVCircularJump;
-import com.ldoublem.loadingView.view.LVCircularRing;
-import com.ldoublem.loadingView.view.LVCircularSmile;
-import com.ldoublem.loadingView.view.LVCircularZoom;
-import com.ldoublem.loadingView.view.LVEatBeans;
-import com.ldoublem.loadingView.view.LVFinePoiStar;
-import com.ldoublem.loadingView.view.LVFunnyBar;
-import com.ldoublem.loadingView.view.LVGears;
-import com.ldoublem.loadingView.view.LVGearsTwo;
-import com.ldoublem.loadingView.view.LVGhost;
-import com.ldoublem.loadingView.view.LVLineWithText;
-import com.ldoublem.loadingView.view.LVNews;
-import com.ldoublem.loadingView.view.LVPlayBall;
-import com.ldoublem.loadingView.view.LVWifi;
+import com.ldoublem.loadingviewlib.LVBattery;
+import com.ldoublem.loadingviewlib.LVBlock;
+import com.ldoublem.loadingviewlib.LVChromeLogo;
+import com.ldoublem.loadingviewlib.LVCircular;
+import com.ldoublem.loadingviewlib.LVCircularCD;
+import com.ldoublem.loadingviewlib.LVCircularJump;
+import com.ldoublem.loadingviewlib.LVCircularRing;
+import com.ldoublem.loadingviewlib.LVCircularSmile;
+import com.ldoublem.loadingviewlib.LVCircularZoom;
+import com.ldoublem.loadingviewlib.LVEatBeans;
+import com.ldoublem.loadingviewlib.LVFinePoiStar;
+import com.ldoublem.loadingviewlib.LVFunnyBar;
+import com.ldoublem.loadingviewlib.LVGears;
+import com.ldoublem.loadingviewlib.LVGearsTwo;
+import com.ldoublem.loadingviewlib.LVGhost;
+import com.ldoublem.loadingviewlib.LVLineWithText;
+import com.ldoublem.loadingviewlib.LVNews;
+import com.ldoublem.loadingviewlib.LVPlayBall;
+import com.ldoublem.loadingviewlib.LVWifi;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 
 public class MainActivity extends AppCompatActivity {
