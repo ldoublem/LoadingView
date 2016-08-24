@@ -26,6 +26,7 @@ import com.ldoublem.loadingviewlib.LVGhost;
 import com.ldoublem.loadingviewlib.LVLineWithText;
 import com.ldoublem.loadingviewlib.LVNews;
 import com.ldoublem.loadingviewlib.LVPlayBall;
+import com.ldoublem.loadingviewlib.LVRingProgress;
 import com.ldoublem.loadingviewlib.LVWifi;
 
 import java.util.Timer;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     LVBlock mLVBlock;
     LVGhost mLVGhost;
     LVFunnyBar mLVFunnyBar;
+    LVRingProgress mLVRingProgress;
     int mValueLVLineWithText = 0;
     int mValueLVNews = 0;
 
@@ -91,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 //        mLVBlock.isShadow(false);
         mLVGhost = (LVGhost) findViewById(R.id.lv_ghost);
         mLVFunnyBar=(LVFunnyBar)findViewById(R.id.lv_funnybar);
+        mLVRingProgress=(LVRingProgress)findViewById(R.id.lv_ringp);
         mLVLineWithText.setValue(50);
 
 
@@ -143,6 +146,10 @@ public class MainActivity extends AppCompatActivity {
         {
             ((LVFunnyBar) v).startAnim();
         }
+        else if(v instanceof LVRingProgress)
+        {
+            ((LVRingProgress)v).startAnim();
+        }
 
 
     }
@@ -169,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
         mLVBlock.startAnim();
         mLVGhost.startAnim();
         mLVFunnyBar.startAnim();
+        mLVRingProgress.startAnim();
     }
 
 
@@ -198,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
         mLVBlock.stopAnim();
         mLVGhost.stopAnim();
         mLVFunnyBar.stopAnim();
+        mLVRingProgress.stopAnim();
 
     }
 
