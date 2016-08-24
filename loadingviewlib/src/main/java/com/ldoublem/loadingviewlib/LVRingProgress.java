@@ -70,7 +70,7 @@ public class LVRingProgress extends View {
     }
 
 
-    private Bitmap getBitmapCabin(Paint paint) {
+    private Bitmap getmBitmapBg(Paint paint) {
         Canvas canvas = null;
 
         if (mBitmapBg == null) {
@@ -95,7 +95,7 @@ public class LVRingProgress extends View {
 
 
     private void drawBg(Canvas canvas, Paint paint) {
-        canvas.drawBitmap(getBitmapCabin(paint), 0
+        canvas.drawBitmap(getmBitmapBg(paint), 0
                 , 0, paint);
 
 
@@ -144,9 +144,7 @@ public class LVRingProgress extends View {
     }
 
 
-    private void drawText(Canvas canvas, Paint paint, String text) {
-
-    }
+    
 
 
     @Override
