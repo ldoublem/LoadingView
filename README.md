@@ -6,81 +6,37 @@ a simple loadingview for android with animation
 
 
 #Preview
-
-
-
-![gif](https://github.com/ldoublem/LoadingView/blob/master/screen/%E6%95%88%E6%9E%9C.gif)
-
-![chromelogo](https://github.com/ldoublem/LoadingView/blob/master/screen/chromelogo.png)
-
-![mac](https://github.com/ldoublem/LoadingView/blob/master/screen/computer.png)
----
+![screen](https://github.com/ldoublem/LoadingView/blob/master/screen/screen.gif)
 #Gradle
-```compile 'com.ldoublem.loadingview:loadingviewlib:0.0.1'```
+```compile 'com.ldoublem.loadingview:loadingviewlib:1.0'```
 ---
 
-
-
-## LVChromeLogo canvas 
-```
-LVChromeLogo 
-use canvas paint a view like chrome logo
-1,Draw three fans of 120 degrees
-2,Draw three equilateral triangle
-3,Draw shadow
-4,Draw center circle
-```
-
-## LVComputer canvas 
-## LVComputerDesktop canvas 
-## LVComputerIpad canvas 
-
-use canvas paint a view like Mac product
-[demo](https://github.com/ldoublem/AppleView)
-
-
-
-
-
-## LoadingView Usage 使用
-LVLineWithText
-```
-     LVLineWithText.setValue(50);//0-100
-```
-LVFinePoiStar
-```
-    LVFinePoiStar.setDrawPath(false);//Draw the path of the Star
-```
-
-LVBattery
-
-![HORIZONTAL](https://github.com/ldoublem/LoadingView/blob/master/screen/bHORIZONTAL.png)![VERTICAL](https://github.com/ldoublem/LoadingView/blob/master/screen/bVERTICAL.png)
-
-```
-    LVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.VERTICAL);//LVBattery.BatteryOrientation.HORIZONTAL
-    LVBattery.setShowNum(true);//show number in battery
-```
-LVNews
-```
-   LVNews.setValue(50);//0-100
-```
-if value has 100,you want animation you can
-```
-   LVNews.startAnim();
-```
-LVBlock
-```
-   LVBlock.isShadow(false);//show shadow true or false
-```
+|Id| Picture | Name | Method | 
+|---|---|---|---|
+1|![1](https://github.com/ldoublem/LoadingView/blob/master/screen/1.png) | LVCircularCD | setViewColor(int color)<br>startAnim(int time)<br>stopAnim()
+2|![2](https://github.com/ldoublem/LoadingView/blob/master/screen/2.png) | LVCircularRing | setViewColor(int color)<br>setBarColor(int color)<br>startAnim(int time)<br>stopAnim()
+3|![3](https://github.com/ldoublem/LoadingView/blob/master/screen/3.png) | LVCircular | setViewColor(int color)<br>setRoundColor(int color)<br>startAnim(int time)<br>stopAnim()
+4|![4](https://github.com/ldoublem/LoadingView/blob/master/screen/4.png) | LVFinePoiStar | setViewColor(int color)<br>setCircleColor(int color)<br>startAnim(int time)<br>stopAnim()<br>setDrawPath(boolean isDrawPath)
+5|![5](https://github.com/ldoublem/LoadingView/blob/master/screen/5.png) | LVCircularSmile | setViewColor(int color)<br>startAnim(int time)<br>stopAnim()
+6|![6](https://github.com/ldoublem/LoadingView/blob/master/screen/6.png) | LVGears | setViewColor(int color)<br>startAnim(int time)<br>stopAnim()
+7|![7](https://github.com/ldoublem/LoadingView/blob/master/screen/7.png) | LVGearsTwo | setViewColor(int color)<br>startAnim(int time)<br>stopAnim()
+8|![8](https://github.com/ldoublem/LoadingView/blob/master/screen/8.png) | LVWifi | setViewColor(int color)<br>startAnim(int time)<br>stopAnim()
+9|![9](https://github.com/ldoublem/LoadingView/blob/master/screen/9.png) | LVCircularJump | setViewColor(int color)<br>startAnim(int time)<br>stopAnim()
+10|![10](https://github.com/ldoublem/LoadingView/blob/master/screen/10.png) | LVCircularZoom | setViewColor(int color)<br>startAnim(int time)<br>stopAnim()
+11|![11](https://github.com/ldoublem/LoadingView/blob/master/screen/11.png) | LVPlayBall | setViewColor(int color)<br>setBallColor(int color)<br>startAnim(int time)<br>stopAnim()
+12|![12](https://github.com/ldoublem/LoadingView/blob/master/screen/12.png) | LVNews | setViewColor(int color)<br>startAnim(int time)<br>stopAnim()
+13|![13](https://github.com/ldoublem/LoadingView/blob/master/screen/13.png) | LVLineWithText | setViewColor(int color)<br>setTextColor(int color)<br>setValue(int value)//0-100
+14|![14](https://github.com/ldoublem/LoadingView/blob/master/screen/14.png) | LVEatBeans | setViewColor(int color)<br>setEyeColor(int color)<br>startAnim(int time)<br>stopAnim()
+15|![15](https://github.com/ldoublem/LoadingView/blob/master/screen/15.png) | LVChromeLogo | startAnim(int time)<br>stopAnim()
+16|![16](https://github.com/ldoublem/LoadingView/blob/master/screen/16.png) | LVRingProgress | setViewColor(int color)<br>setTextColor(int color)<br>setPorBarStartColor(int color)<br>setPorBarEndColor(int color)<br>startAnim(int time)<br>stopAnim()
+17|![17](https://github.com/ldoublem/LoadingView/blob/master/screen/17.png) | LVBlock | setViewColor(int color)<br>isShadow(boolean boolean show)<br>setShadowColor(int color)<br>startAnim(int time)<br>stopAnim()
+18|![18](https://github.com/ldoublem/LoadingView/blob/master/screen/18.png) | LVFunnyBar | setViewColor(int color)<br>startAnim(int time)<br>stopAnim()
+19|![19](https://github.com/ldoublem/LoadingView/blob/master/screen/19.png) | LVGhost | setViewColor(int color)<br>setHandColor(int color)<br>startAnim(int time)<br>stopAnim()
+20|![20](https://github.com/ldoublem/LoadingView/blob/master/screen/20.png) | LVBlazeWood | startAnim(int time)<br>stopAnim()
+21|![21](https://github.com/ldoublem/LoadingView/blob/master/screen/20.png) | LVBlazeWood | setViewColor(int color)<br>setCellColor(int color)<br>setShowNum(boolean show)<br>setValue(int value)//0-100<br>startAnim(int time)<br>stopAnim()
 
 
 
-
-other view
-```java
-     v.startAnim();
-     v.stopAnim();
-```
 
 
 
