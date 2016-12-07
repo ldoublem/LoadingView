@@ -1,8 +1,6 @@
-package com.ldoublem.loadingviewlib;
+package com.ldoublem.loadingviewlib.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,14 +9,14 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+
+import com.ldoublem.loadingviewlib.view.base.LVBase;
 
 /**
  * Created by lumingmin on 16/7/1.
  */
 
-public class LVFunnyBar extends View {
+public class LVFunnyBar extends LVBase {
 
     private Paint mPaintLeftTop, mPaintLeftLeft, mPaintLeftRight;
     private Paint mPaintRightTop, mPaintRightLeft, mPaintRightRight;
@@ -26,20 +24,19 @@ public class LVFunnyBar extends View {
     private int mWidth = 0;
 
     private int mHeight = 0;
-//    int onAnimationRepeatFlag = 0;
 
     public LVFunnyBar(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public LVFunnyBar(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public LVFunnyBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
+//    int onAnimationRepeatFlag = 0;
 
 
     @Override
@@ -141,20 +138,12 @@ public class LVFunnyBar extends View {
 
     }
 
-    private void drawFire(Canvas canvas)
-    {
+    private void drawFire(Canvas canvas) {
 
-        RectF rectFire=new RectF();
-
-
-
-
-
-
+        RectF rectFire = new RectF();
 
 
     }
-
 
 
     private void initPaint() {
@@ -199,66 +188,84 @@ public class LVFunnyBar extends View {
     }
 
 
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(0f, 1f, 1000);
+    public void setViewColor(int color) {
+
+
+        mPaintLeftTop.setColor(color);
+        mPaintRightTop.setColor(color);
+        int red = (color & 0xff0000) >> 16;
+        int green = (color & 0x00ff00) >> 8;
+        int blue = (color & 0x0000ff);
+        mPaintLeftLeft.setColor(Color.rgb(
+                (red-60)>0?(red-60):0,
+                (green-54)>0?(green-54):0,
+                (blue-13)>0?(blue-13):0
+        ));
+
+        mPaintRightLeft.setColor(Color.rgb(
+                (red-60)>0?(red-60):0,
+                (green-54)>0?(green-54):0,
+                (blue-13)>0?(blue-13):0
+        ));
+
+
+
+
+
+        mPaintRightRight.setColor(Color.rgb(
+                (red-96)>0?(red-96):0,
+                (green-70)>0?(green-70):0,
+                (blue-22)>0?(blue-22):0
+        ));
+
+        mPaintLeftRight.setColor(Color.rgb(
+                (red-96)>0?(red-96):0,
+                (green-70)>0?(green-70):0,
+                (blue-22)>0?(blue-22):0
+        ));
+
     }
 
-    private ValueAnimator valueAnimator;
+
     private float mAnimatedValue = 1f;
 
-    public void stopAnim() {
-        if (valueAnimator != null) {
-            clearAnimation();
 
-            valueAnimator.setRepeatCount(0);
-            valueAnimator.cancel();
-            valueAnimator.end();
-            mAnimatedValue = 1f;
-//            onAnimationRepeatFlag = 0;
-            postInvalidate();
-        }
+    @Override
+    protected void InitPaint() {
+        initPaint();
     }
 
-
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
-        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                invalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-
-            }
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                super.onAnimationRepeat(animation);
-//                onAnimationRepeatFlag = onAnimationRepeatFlag + 1;
-            }
-        });
-        if (!valueAnimator.isRunning()) {
-            valueAnimator.start();
-
-        }
-
-        return valueAnimator;
+    @Override
+    protected void OnAnimationUpdate(ValueAnimator valueAnimator) {
+        mAnimatedValue = (float) valueAnimator.getAnimatedValue();
+        invalidate();
     }
 
+    @Override
+    protected void OnAnimationRepeat(Animator animation) {
+
+    }
+
+    @Override
+    protected int OnStopAnim() {
+        mAnimatedValue = 1f;
+        postInvalidate();
+        return 1;
+    }
+
+    @Override
+    protected int SetAnimRepeatMode() {
+        return ValueAnimator.REVERSE;
+    }
+
+    @Override
+    protected void AinmIsRunning() {
+
+    }
+
+    @Override
+    protected int SetAnimRepeatCount() {
+        return ValueAnimator.INFINITE;
+    }
 
 }

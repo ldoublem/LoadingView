@@ -1,7 +1,6 @@
-package com.ldoublem.loadingviewlib;
+package com.ldoublem.loadingviewlib.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,14 +9,14 @@ import android.graphics.Paint;
 import android.graphics.Path;
 
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+
+import com.ldoublem.loadingviewlib.view.base.LVBase;
 
 /**
  * Created by lumingmin on 16/6/28.
  */
 
-public class LVBlock extends View {
+public class LVBlock extends LVBase {
     private Paint mPaint, mPaintShadow, mPaintLeft, mPaintRight;
     private float mWidth = 0f;
     float moveYtoCenter = 0f;
@@ -25,16 +24,15 @@ public class LVBlock extends View {
     float rhomboidsY = 0f;
 
     public LVBlock(Context context) {
-        this(context, null);
-    }
-
-    public LVBlock(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context);
     }
 
     public LVBlock(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
+    }
+
+    public LVBlock(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
 
 
@@ -58,7 +56,7 @@ public class LVBlock extends View {
         if (!mShadow) {
             moveYtoCenter = mWidth / 4;
         } else {
-            moveYtoCenter =0;
+            moveYtoCenter = 0;
         }
         if (mAnimatedValue >= 0 && mAnimatedValue < (1.0f / 3)) {
             drawStep1(canvas, mAnimatedValue);
@@ -170,8 +168,6 @@ public class LVBlock extends View {
     private void drawStep2(Canvas canvas, float time) {
 
 
-
-
         float moveX = rhomboidsX * (time - 1.0f / 3) / (1.0f / 3);
         float moveY = rhomboidsY * (time - 1.0f / 3) / (1.0f / 3);
 
@@ -265,8 +261,6 @@ public class LVBlock extends View {
     private void drawStep3(Canvas canvas, float time) {
 
 
-
-
         float moveX = rhomboidsX / 2.0f * (time - 1.0f / 3 * 2) / (1.0f / 3);
         float moveY = rhomboidsY / 2.0f * (time - 1.0f / 3 * 2) / (1.0f / 3);
 
@@ -356,8 +350,6 @@ public class LVBlock extends View {
     private void drawShadowStep1(Canvas canvas, float time) {
 
 
-
-
         float moveX = rhomboidsX / 2.0f * time / (1.0f / 3);
         float moveY = rhomboidsY / 2.0f * time / (1.0f / 3);
 
@@ -443,7 +435,6 @@ public class LVBlock extends View {
     private void drawShadowStep3(Canvas canvas, float time) {
 
 
-
         float moveX = rhomboidsX / 2.0f * (time - 1.0f / 3 * 2) / (1.0f / 3);
         float moveY = rhomboidsY / 2.0f * (time - 1.0f / 3 * 2) / (1.0f / 3);
 
@@ -510,64 +501,63 @@ public class LVBlock extends View {
     }
 
 
-    private ValueAnimator valueAnimator;
+    public void setViewColor(int color) {
+        mPaint.setColor(color);
+
+        int red = (color & 0xff0000) >> 16;
+        int green = (color & 0x00ff00) >> 8;
+        int blue = (color & 0x0000ff);
+
+
+        mPaintLeft.setColor(Color.rgb((red - 15) > 0 ? red - 15 : 0,
+                (green - 58) > 0 ? green - 58 : 0,
+                (blue - 31) > 0 ? blue - 31 : 0));
+        mPaintRight.setColor(Color.rgb((red - 59) > 0 ? red - 59 : 0,
+                (green - 111) > 0 ? green - 111 : 0,
+                (blue - 16) > 0 ? blue - 16 : 0));
+
+        postInvalidate();
+    }
+
+    public void setShadowColor(int color) {
+        mPaintShadow.setColor(color);
+        postInvalidate();
+
+
+        postInvalidate();
+    }
+
+
     float mAnimatedValue = 0;
 
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(0f, 1f, 500);
+
+    @Override
+    protected void InitPaint() {
+        initPaint();
     }
 
+    @Override
+    protected void OnAnimationUpdate(ValueAnimator valueAnimator) {
+        mAnimatedValue = (float) valueAnimator.getAnimatedValue();
 
-    public void stopAnim() {
-        if (valueAnimator != null) {
-            clearAnimation();
-            valueAnimator.setRepeatCount(0);
-            valueAnimator.cancel();
-            valueAnimator.end();
-            mAnimatedValue = 0f;
-            postInvalidate();
-        }
+        invalidate();
     }
 
+    @Override
+    protected void OnAnimationRepeat(Animator animation) {
 
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
-        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                mAnimatedValue = (float) valueAnimator.getAnimatedValue();
+    }
 
-                invalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
+    @Override
+    protected int OnStopAnim() {
+        mAnimatedValue = 0f;
+        postInvalidate();
+        return 1;
+    }
 
-            }
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                super.onAnimationRepeat(animation);
-            }
-        });
-        if (!valueAnimator.isRunning()) {
-            valueAnimator.start();
-
-        }
-
-        return valueAnimator;
+    @Override
+    protected int SetAnimRepeatMode() {
+        return ValueAnimator.RESTART;
     }
 
     private boolean mShadow = true;
@@ -578,5 +568,13 @@ public class LVBlock extends View {
         invalidate();
     }
 
+    @Override
+    protected void AinmIsRunning() {
 
+    }
+
+    @Override
+    protected int SetAnimRepeatCount() {
+        return ValueAnimator.INFINITE;
+    }
 }

@@ -1,6 +1,6 @@
 package com.ldoublem.loadingView;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -8,30 +8,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.ldoublem.loadingviewlib.LVBattery;
-import com.ldoublem.loadingviewlib.LVBlock;
+import com.ldoublem.loadingviewlib.view.LVBattery;
+import com.ldoublem.loadingviewlib.view.LVBlazeWood;
+import com.ldoublem.loadingviewlib.view.LVBlock;
 import com.ldoublem.loadingviewlib.LVChromeLogo;
 import com.ldoublem.loadingviewlib.LVCircular;
 import com.ldoublem.loadingviewlib.LVCircularCD;
-import com.ldoublem.loadingviewlib.LVCircularJump;
-import com.ldoublem.loadingviewlib.LVCircularRing;
-import com.ldoublem.loadingviewlib.LVCircularSmile;
-import com.ldoublem.loadingviewlib.LVCircularZoom;
-import com.ldoublem.loadingviewlib.LVEatBeans;
-import com.ldoublem.loadingviewlib.LVFinePoiStar;
-import com.ldoublem.loadingviewlib.LVFunnyBar;
-import com.ldoublem.loadingviewlib.LVGears;
-import com.ldoublem.loadingviewlib.LVGearsTwo;
-import com.ldoublem.loadingviewlib.LVGhost;
+import com.ldoublem.loadingviewlib.view.LVCircularJump;
+import com.ldoublem.loadingviewlib.view.LVCircularRing;
+import com.ldoublem.loadingviewlib.view.LVCircularSmile;
+import com.ldoublem.loadingviewlib.view.LVCircularZoom;
+import com.ldoublem.loadingviewlib.view.LVEatBeans;
+import com.ldoublem.loadingviewlib.view.LVFinePoiStar;
+import com.ldoublem.loadingviewlib.view.LVFunnyBar;
+import com.ldoublem.loadingviewlib.view.LVGears;
+import com.ldoublem.loadingviewlib.view.LVGearsTwo;
+import com.ldoublem.loadingviewlib.view.LVGhost;
 import com.ldoublem.loadingviewlib.LVLineWithText;
-import com.ldoublem.loadingviewlib.LVNews;
-import com.ldoublem.loadingviewlib.LVPlayBall;
-import com.ldoublem.loadingviewlib.LVRingProgress;
-import com.ldoublem.loadingviewlib.LVWifi;
+import com.ldoublem.loadingviewlib.view.LVNews;
+import com.ldoublem.loadingviewlib.view.LVPlayBall;
+import com.ldoublem.loadingviewlib.view.LVRingProgress;
+import com.ldoublem.loadingviewlib.view.LVWifi;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
     LVGhost mLVGhost;
     LVFunnyBar mLVFunnyBar;
     LVRingProgress mLVRingProgress;
+
+    LVBlazeWood mLVBlazeWood;
+
     int mValueLVLineWithText = 0;
     int mValueLVNews = 0;
 
@@ -70,31 +73,102 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
 
         setContentView(R.layout.activity_main);
-        mLVPlayBall = (LVPlayBall) findViewById(R.id.lv_playball);
-        mLVCircularRing = (LVCircularRing) findViewById(R.id.lv_circularring);
+
         mLVCircular = (LVCircular) findViewById(R.id.lv_circular);
-        mLVCircularJump = (LVCircularJump) findViewById(R.id.lv_circularJump);
-        mLVCircularZoom = (LVCircularZoom) findViewById(R.id.lv_circularZoom);
-        mLVLineWithText = (LVLineWithText) findViewById(R.id.lv_linetext);
-        mLVEatBeans = (LVEatBeans) findViewById(R.id.lv_eatBeans);
+        mLVCircular.setViewColor(Color.rgb(255, 99, 99));
+        mLVCircular.setRoundColor(Color.rgb(255, 0, 0));
+
         mLVCircularCD = (LVCircularCD) findViewById(R.id.lv_circularCD);
+        mLVCircularCD.setViewColor(Color.rgb(0, 255, 0));
+
+
+        mLVLineWithText = (LVLineWithText) findViewById(R.id.lv_linetext);
+        mLVLineWithText.setViewColor(Color.rgb(33, 66, 77));
+        mLVLineWithText.setTextColor(Color.rgb(233, 166, 177));
+
+
+        mLVCircularJump = (LVCircularJump) findViewById(R.id.lv_circularJump);
+        mLVCircularJump.setViewColor(Color.rgb(133, 66, 99));
+
+
+        mLVCircularRing = (LVCircularRing) findViewById(R.id.lv_circularring);
+        mLVCircularRing.setViewColor(Color.argb(100, 255, 255, 255));
+        mLVCircularRing.setBarColor(Color.YELLOW);
+
         mLVCircularSmile = (LVCircularSmile) findViewById(R.id.lv_circularSmile);
-        mLVGears = (LVGears) findViewById(R.id.lv_gears);
-        mLVGearsTwo = (LVGearsTwo) findViewById(R.id.lv_gears_two);
+        mLVCircularSmile.setViewColor(Color.rgb(144, 238, 146));
+
+
+        mLVCircularZoom = (LVCircularZoom) findViewById(R.id.lv_circularZoom);
+        mLVCircularZoom.setViewColor(Color.rgb(255, 0, 122));
+
+
+        mLVEatBeans = (LVEatBeans) findViewById(R.id.lv_eatBeans);
+        mLVEatBeans.setViewColor(Color.WHITE);
+        mLVEatBeans.setEyeColor(Color.BLUE);
+
+
         mLVFinePoiStar = (LVFinePoiStar) findViewById(R.id.lv_finePoiStar);
-        mLVChromeLogo = (LVChromeLogo) findViewById(R.id.lv_chromeLogo);
-        mLVBattery = (LVBattery) findViewById(R.id.lv_battery);
-        mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.HORIZONTAL);
-//        mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.HORIZONTAL);
-        mLVBattery.setShowNum(false);
+        mLVFinePoiStar.setViewColor(Color.WHITE);
+        mLVFinePoiStar.setCircleColor(Color.YELLOW);
+
+
+        mLVGears = (LVGears) findViewById(R.id.lv_gears);
+        mLVGears.setViewColor(Color.rgb(55, 155, 233));
+
+        mLVGearsTwo = (LVGearsTwo) findViewById(R.id.lv_gears_two);
+        mLVGearsTwo.setViewColor(Color.rgb(155, 55, 233));
+
+
         mLVWifi = (LVWifi) findViewById(R.id.lv_wifi);
+        mLVWifi.setViewColor(Color.BLACK);
+
+
         mLVNews = (LVNews) findViewById(R.id.lv_news);
-        mLVBlock = (LVBlock) findViewById(R.id.lv_block);
-//        mLVBlock.isShadow(false);
+        mLVNews.setViewColor(Color.WHITE);
+
+
+        mLVRingProgress = (LVRingProgress) findViewById(R.id.lv_ringp);
+        mLVRingProgress.setViewColor(Color.WHITE);
+        mLVRingProgress.setTextColor(Color.BLACK);
+        mLVRingProgress.setPorBarStartColor(Color.YELLOW);
+        mLVRingProgress.setPorBarEndColor(Color.BLUE);
+
+
         mLVGhost = (LVGhost) findViewById(R.id.lv_ghost);
-        mLVFunnyBar=(LVFunnyBar)findViewById(R.id.lv_funnybar);
-        mLVRingProgress=(LVRingProgress)findViewById(R.id.lv_ringp);
-        mLVLineWithText.setValue(50);
+        mLVGhost.setViewColor(Color.WHITE);
+        mLVGhost.setHandColor(Color.BLACK);
+
+        mLVPlayBall = (LVPlayBall) findViewById(R.id.lv_playball);
+        mLVPlayBall.setViewColor(Color.WHITE);
+        mLVPlayBall.setBallColor(Color.RED);
+
+
+        mLVChromeLogo = (LVChromeLogo) findViewById(R.id.lv_chromeLogo);
+
+        mLVBattery = (LVBattery) findViewById(R.id.lv_battery);
+        mLVBattery.setBatteryOrientation(LVBattery.BatteryOrientation.VERTICAL);//LVBattery.BatteryOrientation.HORIZONTAL
+        mLVBattery.setShowNum(false);
+
+        mLVBattery.setViewColor(Color.WHITE);
+        mLVBattery.setCellColor(Color.GREEN);
+
+        mLVBlock = (LVBlock) findViewById(R.id.lv_block);
+
+        mLVBlock.setViewColor(Color.rgb(245,209,22));
+        mLVBlock.setShadowColor(Color.argb(180, 0, 0, 0));
+//        mLVBlock.isShadow(false);
+
+
+
+        mLVFunnyBar = (LVFunnyBar) findViewById(R.id.lv_funnybar);
+        mLVFunnyBar.setViewColor(Color.rgb(234, 167, 107));
+
+
+
+        mLVBlazeWood = (LVBlazeWood) findViewById(R.id.lv_wood);
+
+//        mLVLineWithText.setValue(50);
 
 
     }
@@ -115,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (v instanceof LVCircularJump) {
             ((LVCircularJump) v).startAnim();
         } else if (v instanceof LVEatBeans) {
-            ((LVEatBeans) v).startAnim();
+            ((LVEatBeans) v).startAnim(3500);
         } else if (v instanceof LVPlayBall) {
             ((LVPlayBall) v).startAnim();
         } else if (v instanceof LVLineWithText) {
@@ -126,29 +200,26 @@ public class MainActivity extends AppCompatActivity {
             ((LVGearsTwo) v).startAnim();
         } else if (v instanceof LVFinePoiStar) {
             ((LVFinePoiStar) v).setDrawPath(false);
-            ((LVFinePoiStar) v).startAnim();
+            ((LVFinePoiStar) v).startAnim(3500);
         } else if (v instanceof LVChromeLogo) {
             ((LVChromeLogo) v).startAnim();
         } else if (v instanceof LVBattery) {
-            ((LVBattery) v).startAnim();
+            ((LVBattery) v).startAnim(5000);
         } else if (v instanceof LVWifi) {
-            ((LVWifi) v).startAnim();
+            ((LVWifi) v).startAnim(9000);
         } else if (v instanceof LVNews) {
-//            ((LVNews) v).startAnim();
             startLVNewsAnim();
         } else if (v instanceof LVBlock) {
             ((LVBlock) v).startAnim();
 
-        }else if(v instanceof LVGhost)
-        {
+        } else if (v instanceof LVGhost) {
             ((LVGhost) v).startAnim();
-        }else if(v instanceof LVFunnyBar)
-        {
+        } else if (v instanceof LVFunnyBar) {
             ((LVFunnyBar) v).startAnim();
-        }
-        else if(v instanceof LVRingProgress)
-        {
-            ((LVRingProgress)v).startAnim();
+        } else if (v instanceof LVRingProgress) {
+            ((LVRingProgress) v).startAnim(3000);
+        } else if (v instanceof LVBlazeWood) {
+            ((LVBlazeWood) v).startAnim(500);
         }
 
 
@@ -161,22 +232,22 @@ public class MainActivity extends AppCompatActivity {
         mLVCircularJump.startAnim();
         mLVCircularZoom.startAnim();
         startLVLineWithTextAnim();
-        mLVEatBeans.startAnim();
+        mLVEatBeans.startAnim(3500);
         mLVCircularCD.startAnim();
-        mLVCircularSmile.startAnim();
+        mLVCircularSmile.startAnim(1000);
         mLVGears.startAnim();
         mLVGearsTwo.startAnim();
         mLVFinePoiStar.setDrawPath(true);
-        mLVFinePoiStar.startAnim();
+        mLVFinePoiStar.startAnim(3500);
         mLVChromeLogo.startAnim();
-        mLVBattery.startAnim();
-        mLVWifi.startAnim();
-//        mLVNews.startAnim();
+        mLVBattery.startAnim(5000);
+        mLVWifi.startAnim(9000);
         startLVNewsAnim();
         mLVBlock.startAnim();
         mLVGhost.startAnim();
         mLVFunnyBar.startAnim();
-        mLVRingProgress.startAnim();
+        mLVRingProgress.startAnim(3000);
+        mLVBlazeWood.startAnim(500);
     }
 
 
@@ -203,10 +274,12 @@ public class MainActivity extends AppCompatActivity {
         mLVBattery.stopAnim();
         mLVWifi.stopAnim();
         stopLVNewsAnim();
+//        mLVNews.stopLVNewsAnim();
         mLVBlock.stopAnim();
         mLVGhost.stopAnim();
         mLVFunnyBar.stopAnim();
         mLVRingProgress.stopAnim();
+        mLVBlazeWood.stopAnim();
 
     }
 

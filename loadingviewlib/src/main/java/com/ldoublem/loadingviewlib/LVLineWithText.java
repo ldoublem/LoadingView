@@ -16,7 +16,9 @@ import android.view.animation.RotateAnimation;
 
 public class LVLineWithText extends View {
 
-    private Paint mPaint;
+    private Paint mPaintBar;
+    private Paint mPaintText;
+
 
     private float mWidth = 0f;
     private float mHigh = 0f;
@@ -51,25 +53,24 @@ public class LVLineWithText extends View {
         super.onDraw(canvas);
 
 
-
         String text = mVlaue + "%";
-        float textlength = getFontlength(mPaint, text);
-        float texthigh = getFontHeight(mPaint, text);
+        float textlength = getFontlength(mPaintText, text);
+        float texthigh = getFontHeight(mPaintText, text);
 
         if (mVlaue == 0) {
-            canvas.drawText(text, mPadding, mHigh / 2 + texthigh / 2, mPaint);
-            canvas.drawLine(mPadding + textlength, mHigh / 2, mWidth - mPadding, mHigh / 2, mPaint);
+            canvas.drawText(text, mPadding, mHigh / 2 + texthigh / 2, mPaintText);
+            canvas.drawLine(mPadding + textlength, mHigh / 2, mWidth - mPadding, mHigh / 2, mPaintBar);
 
 
         } else if (mVlaue >= 100) {
-            canvas.drawText(text, mWidth - mPadding - textlength, mHigh / 2 + texthigh / 2, mPaint);
-            canvas.drawLine(mPadding, mHigh / 2, mWidth - mPadding - textlength, mHigh / 2, mPaint);
+            canvas.drawText(text, mWidth - mPadding - textlength, mHigh / 2 + texthigh / 2, mPaintText);
+            canvas.drawLine(mPadding, mHigh / 2, mWidth - mPadding - textlength, mHigh / 2, mPaintBar);
 
         } else {
             float w = mWidth - 2 * mPadding - textlength;
-            canvas.drawLine(mPadding, mHigh / 2, mPadding + w * mVlaue / 100, mHigh / 2, mPaint);
-            canvas.drawLine(mPadding + w * mVlaue / 100 + textlength, mHigh / 2, mWidth - mPadding, mHigh / 2, mPaint);
-            canvas.drawText(text, mPadding + w * mVlaue / 100, mHigh / 2 + texthigh / 2, mPaint);
+            canvas.drawLine(mPadding, mHigh / 2, mPadding + w * mVlaue / 100, mHigh / 2, mPaintBar);
+            canvas.drawLine(mPadding + w * mVlaue / 100 + textlength, mHigh / 2, mWidth - mPadding, mHigh / 2, mPaintBar);
+            canvas.drawText(text, mPadding + w * mVlaue / 100, mHigh / 2 + texthigh / 2, mPaintText);
 
 
         }
@@ -79,15 +80,34 @@ public class LVLineWithText extends View {
 
 
     private void initPaint() {
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(Color.WHITE);
-        mPaint.setTextSize(dip2px(10));
-        mPaint.setStrokeWidth(dip2px(1));
+        mPaintBar = new Paint();
+        mPaintBar.setAntiAlias(true);
+        mPaintBar.setStyle(Paint.Style.FILL);
+        mPaintBar.setColor(Color.WHITE);
+        mPaintBar.setTextSize(dip2px(10));
+        mPaintBar.setStrokeWidth(dip2px(1));
+
+
+        mPaintText = new Paint();
+        mPaintText.setAntiAlias(true);
+        mPaintText.setStyle(Paint.Style.FILL);
+        mPaintText.setColor(Color.WHITE);
+        mPaintText.setTextSize(dip2px(10));
+        mPaintText.setStrokeWidth(dip2px(1));
 
 
     }
+
+    public void setTextColor(int color) {
+        mPaintText.setColor(color);
+        postInvalidate();
+    }
+
+    public void setViewColor(int color) {
+        mPaintBar.setColor(color);
+        postInvalidate();
+    }
+
 
     public float getFontlength(Paint paint, String str) {
         Rect rect = new Rect();

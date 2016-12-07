@@ -1,7 +1,6 @@
-package com.ldoublem.loadingviewlib;
+package com.ldoublem.loadingviewlib.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,14 +8,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+
+import com.ldoublem.loadingviewlib.view.base.LVBase;
 
 /**
  * Created by lumingmin on 16/6/27.
  */
 
-public class LVWifi extends View {
+public class LVWifi extends LVBase {
     private float mWidth = 0f;
     private float mPadding = 0f;
     private Paint mPaint;
@@ -43,7 +42,12 @@ public class LVWifi extends View {
 
 
     }
+    public void setViewColor(int color)
+    {
+        mPaint.setColor(color);
 
+        postInvalidate();
+    }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -92,69 +96,48 @@ public class LVWifi extends View {
 
     }
 
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(0f, 1f, 6000);
-    }
 
-    private ValueAnimator valueAnimator;
+
     private float mAnimatedValue = 0.9f;
 
-    public void stopAnim() {
-        if (valueAnimator != null) {
-            clearAnimation();
 
-            valueAnimator.setRepeatCount(0);
-            valueAnimator.cancel();
-            valueAnimator.end();
-            mAnimatedValue = 0.9f;
-            postInvalidate();
-        }
+
+
+
+
+    @Override
+    protected void InitPaint() {
+
     }
 
-
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
-        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                invalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-
-            }
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                super.onAnimationRepeat(animation);
-            }
-        });
-        if (!valueAnimator.isRunning()) {
-            valueAnimator.start();
-
-        }
-
-        return valueAnimator;
+    @Override
+    protected void OnAnimationUpdate(ValueAnimator valueAnimator) {
+        mAnimatedValue = (float) valueAnimator.getAnimatedValue();
+        invalidate();
     }
 
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
+    @Override
+    protected void OnAnimationRepeat(Animator animation) {
+
+    }
+
+    @Override
+    protected int OnStopAnim() {
+        mAnimatedValue = 0.9f;
+        postInvalidate();
+        return 1;
+    }
+
+    @Override
+    protected int SetAnimRepeatMode() {
+        return ValueAnimator.RESTART;
+    }
+    @Override
+    protected void AinmIsRunning() {
+
+    } @Override
+    protected int SetAnimRepeatCount() {
+        return ValueAnimator.INFINITE;
     }
 
 

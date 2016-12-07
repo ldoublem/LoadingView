@@ -1,7 +1,6 @@
-package com.ldoublem.loadingviewlib;
+package com.ldoublem.loadingviewlib.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,14 +8,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+
+import com.ldoublem.loadingviewlib.view.base.LVBase;
 
 /**
  * Created by lumingmin on 16/6/20.
  */
 
-public class LVPlayBall extends View {
+public class LVPlayBall extends LVBase {
     private Paint mPaint, mPaintCircle, mPaintBall;
     private float mPaintStrokeWidth;
     private float mHigh = 0f;
@@ -28,18 +27,17 @@ public class LVPlayBall extends View {
     Path path = new Path();
 
     public LVPlayBall(Context context) {
-
-        this(context, null);
+        super(context);
     }
 
     public LVPlayBall(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public LVPlayBall(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -59,7 +57,7 @@ public class LVPlayBall extends View {
         super.onDraw(canvas);
 
 
-        path=new Path();
+        path = new Path();
         path.moveTo(0 + mRadius * 2 + mPaintStrokeWidth, getMeasuredHeight() / 2);
         path.quadTo(mWidth / 2, quadToStart, mWidth - mRadius * 2 - mPaintStrokeWidth, mHigh / 2);
         mPaint.setStrokeWidth(2);
@@ -103,73 +101,68 @@ public class LVPlayBall extends View {
     }
 
 
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(0f, 1f, 800);
+    public void setViewColor(int color)
+    {
+        mPaint.setColor(color);
+        mPaintCircle.setColor(color);
+        postInvalidate();
+    }
+    public void setBallColor(int color)
+    {
+        mPaintBall.setColor(color);
+        postInvalidate();
     }
 
 
-    public void stopAnim() {
-        if (valueAnimator != null) {
-            clearAnimation();
-            quadToStart = mHigh / 2;
-            ballY = mHigh / 2;
-            valueAnimator.setRepeatCount(0);
-            valueAnimator.cancel();
-            valueAnimator.end();
-        }
+    @Override
+    protected void InitPaint() {
+        initPaint();
     }
 
-    ValueAnimator valueAnimator = null;
+    @Override
+    protected void OnAnimationUpdate(ValueAnimator valueAnimator) {
+        float value = (float) valueAnimator.getAnimatedValue();
+
+        if (value > 0.75) {
 
 
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
-        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);//
+            quadToStart = mHigh / 2 - (1f - (float) valueAnimator.getAnimatedValue()) * mHigh / 3f;
+        } else {
+            quadToStart = mHigh / 2 + (1f - (float) valueAnimator.getAnimatedValue()) * mHigh / 3f;
 
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float value = (float) valueAnimator.getAnimatedValue();
-
-                if (value > 0.75) {
-
-
-                    quadToStart = mHigh / 2 - (1f - (float) valueAnimator.getAnimatedValue()) * mHigh / 3f;
-                } else {
-                    quadToStart = mHigh / 2 + (1f - (float) valueAnimator.getAnimatedValue()) * mHigh / 3f;
-
-                }
-
-                if (value > 0.35f) {
-                    ballY = mHigh / 2 - (mHigh / 2 * value);
-                } else {
-                    ballY = mHigh / 2 + (mHigh / 6 * value);
-                }
-
-
-                invalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-            }
-        });
-        if (!valueAnimator.isRunning()) {
-            valueAnimator.start();
         }
 
-        return valueAnimator;
+        if (value > 0.35f) {
+            ballY = mHigh / 2 - (mHigh / 2 * value);
+        } else {
+            ballY = mHigh / 2 + (mHigh / 6 * value);
+        }
+
+
+        invalidate();
     }
 
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
+    @Override
+    protected void OnAnimationRepeat(Animator animation) {
+
+    }
+
+    @Override
+    protected int OnStopAnim() {
+        quadToStart = mHigh / 2;
+        ballY = mHigh / 2;
+        return 0;
+    }
+
+    @Override
+    protected int SetAnimRepeatMode() {
+        return ValueAnimator.REVERSE;
+    }
+    @Override
+    protected void AinmIsRunning() {
+
+    } @Override
+    protected int SetAnimRepeatCount() {
+        return ValueAnimator.INFINITE;
     }
 }

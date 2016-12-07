@@ -1,23 +1,21 @@
-package com.ldoublem.loadingviewlib;
+package com.ldoublem.loadingviewlib.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+
+import com.ldoublem.loadingviewlib.view.base.LVBase;
 
 /**
  * Created by lumingmin on 16/6/28.
  */
 
-public class LVNews extends View {
+public class LVNews extends LVBase {
 
     private float mWidth = 0f;
     private float mPadding = 0f;
@@ -38,6 +36,18 @@ public class LVNews extends View {
     float marggingLineV = 0f;
     private int mValue = 100;
 
+    public LVNews(Context context) {
+        super(context);
+    }
+
+    public LVNews(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public LVNews(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
     public void setValue(int value) {
         stopAnim();
         if (value <= 100) {
@@ -54,37 +64,33 @@ public class LVNews extends View {
     }
 
 
-    public LVNews(Context context) {
-        this(context, null);
-    }
-
-    public LVNews(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public LVNews(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initPaint();
-    }
-
     private void initPaint() {
-        cornerRadius = dip2px(3.0f);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(Color.WHITE);
     }
 
+
+    public void setViewColor(int color)
+    {
+        mPaint.setColor(color);
+        postInvalidate();
+    }
+
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        cornerRadius = dip2px(3.0f);
+        mPadding = dip2px(1);
 
         canvas.save();
 
 
         mPaint.setStrokeWidth(dip2px(1.0f));
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.WHITE);
+//        mPaint.setColor(Color.WHITE);
 
 
         rectFSquareBG.top = mPadding;
@@ -288,7 +294,7 @@ public class LVNews extends View {
         }
         if (mValue == 100) {
             mPaint.setStyle(Paint.Style.FILL);
-            mPaint.setColor(Color.argb(100, 255, 255, 255));
+            mPaint.setAlpha(100);
             rectFSquare.top = mPadding + cornerRadius + marggingSquareV;
             rectFSquare.left = mPadding + cornerRadius + marggingSquareH;
             rectFSquare.bottom = mWidth / 2 - mPadding + marggingSquareV;
@@ -296,7 +302,8 @@ public class LVNews extends View {
             canvas.drawRect(rectFSquare, mPaint);
         }
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.WHITE);
+//        mPaint.setColor(Color.WHITE);
+        mPaint.setAlpha(255);
     }
 
 
@@ -305,13 +312,10 @@ public class LVNews extends View {
         positon = positon - 1;
 
 
-
         canvas.drawLine(mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH,
                 mPadding + cornerRadius + cornerRadius - marggingLineV + rectFSquare.height() / 3 * positon,
                 mWidth / 2 + mPadding + cornerRadius / 2 - marggingLineH + line_width_short / 16.0f * value,
                 mPadding + cornerRadius + cornerRadius - marggingLineV + rectFSquare.height() / 3 * positon, mPaint);
-
-
 
 
     }
@@ -320,15 +324,12 @@ public class LVNews extends View {
     private void drawlongLine(Canvas canvas, float line_width_long, int value, int positon) {
         positon = positon - 4;
         canvas.drawLine(mPadding + cornerRadius,
-                mPadding + cornerRadius + rectFSquare.height() / 3*positon + mWidth / 2 + marggingLineV,
+                mPadding + cornerRadius + rectFSquare.height() / 3 * positon + mWidth / 2 + marggingLineV,
                 mPadding + cornerRadius + line_width_long / 16.0f * (value),
-                mPadding + cornerRadius + rectFSquare.height() / 3*positon + mWidth / 2 + marggingLineV, mPaint);
-
+                mPadding + cornerRadius + rectFSquare.height() / 3 * positon + mWidth / 2 + marggingLineV, mPaint);
 
 
     }
-
-
 
 
     private void drawLine(Canvas canvas, int count, int mValue) {
@@ -349,9 +350,7 @@ public class LVNews extends View {
         } else if (count == 3) {
             drawShortLine(canvas, line_width_short, 16, 1);
             drawShortLine(canvas, line_width_short, 16, 2);
-            drawShortLine(canvas, line_width_short, mValue-32, 3);
-
-
+            drawShortLine(canvas, line_width_short, mValue - 32, 3);
 
 
         } else if (count == 4) {
@@ -360,7 +359,7 @@ public class LVNews extends View {
             drawShortLine(canvas, line_width_short, 16, 1);
             drawShortLine(canvas, line_width_short, 16, 2);
             drawShortLine(canvas, line_width_short, 16, 3);
-            drawlongLine(canvas,line_width_long,mValue-48,4);
+            drawlongLine(canvas, line_width_long, mValue - 48, 4);
 
         } else if (count == 5) {
 
@@ -368,16 +367,16 @@ public class LVNews extends View {
             drawShortLine(canvas, line_width_short, 16, 1);
             drawShortLine(canvas, line_width_short, 16, 2);
             drawShortLine(canvas, line_width_short, 16, 3);
-            drawlongLine(canvas,line_width_long,16,4);
-            drawlongLine(canvas,line_width_long,mValue-64,5);
+            drawlongLine(canvas, line_width_long, 16, 4);
+            drawlongLine(canvas, line_width_long, mValue - 64, 5);
 
 
         } else if (count == 6) {
             drawShortLine(canvas, line_width_short, 16, 1);
             drawShortLine(canvas, line_width_short, 16, 2);
             drawShortLine(canvas, line_width_short, 16, 3);
-            drawlongLine(canvas,line_width_long,16,4);
-            drawlongLine(canvas,line_width_long,16,5);
+            drawlongLine(canvas, line_width_long, 16, 4);
+            drawlongLine(canvas, line_width_long, 16, 5);
             canvas.drawLine(mPadding + cornerRadius,
                     mPadding + cornerRadius + rectFSquare.height() / 3 * 2 + mWidth / 2 + marggingLineV,
                     mPadding + cornerRadius + line_width_long / 20.0f * (mValue - 80),
@@ -389,10 +388,7 @@ public class LVNews extends View {
     }
 
 
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -402,22 +398,16 @@ public class LVNews extends View {
             mWidth = getMeasuredHeight();
         else
             mWidth = getMeasuredWidth();
-        mPadding = dip2px(1);
 
 
     }
 
 
-    private ValueAnimator valueAnimator;
     private int mStep = 1;
     float mAnimatedValue = 0f;
 
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(0f, 1f, 1000);
-    }
 
-
+    @Override
     public void stopAnim() {
         if (valueAnimator != null) {
             clearAnimation();
@@ -427,63 +417,58 @@ public class LVNews extends View {
             mAnimatedValue = 0f;
             mStep = 1;
             invalidate();
-        }
-        else
-        {
+        } else {
             mAnimatedValue = 0f;
             mStep = 1;
-            mValue=100;
+            mValue = 100;
             invalidate();
         }
     }
 
 
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
-        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                if (mAnimatedValue > 0 && mAnimatedValue <= 0.25f) {
-                    mStep = 1;
-                } else if (mAnimatedValue > 0.25f && mAnimatedValue <= 0.5f) {
-                    mStep = 2;
-                } else if (mAnimatedValue > 0.5f && mAnimatedValue <= 0.75f) {
-                    mStep = 3;
-                } else if (mAnimatedValue > 0.75f && mAnimatedValue <= 1.0f) {
-                    mStep = 4;
-                }
+    @Override
+    protected void InitPaint() {
+        initPaint();
+    }
 
-                invalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-
-            }
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                super.onAnimationRepeat(animation);
-            }
-        });
-        if (!valueAnimator.isRunning()) {
-            valueAnimator.start();
-
+    @Override
+    protected void OnAnimationUpdate(ValueAnimator valueAnimator) {
+        mAnimatedValue = (float) valueAnimator.getAnimatedValue();
+        if (mAnimatedValue > 0 && mAnimatedValue <= 0.25f) {
+            mStep = 1;
+        } else if (mAnimatedValue > 0.25f && mAnimatedValue <= 0.5f) {
+            mStep = 2;
+        } else if (mAnimatedValue > 0.5f && mAnimatedValue <= 0.75f) {
+            mStep = 3;
+        } else if (mAnimatedValue > 0.75f && mAnimatedValue <= 1.0f) {
+            mStep = 4;
         }
 
-        return valueAnimator;
+        invalidate();
     }
+
+    @Override
+    protected void OnAnimationRepeat(Animator animation) {
+
+    }
+
+    @Override
+    protected int OnStopAnim() {
+        return 0;
+    }
+
+    @Override
+    protected int SetAnimRepeatMode() {
+        return ValueAnimator.RESTART;
+    }
+    @Override
+    protected void AinmIsRunning() {
+
+    } @Override
+    protected int SetAnimRepeatCount() {
+        return ValueAnimator.INFINITE;
+    }
+
+
 
 }

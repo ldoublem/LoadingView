@@ -1,7 +1,6 @@
-package com.ldoublem.loadingviewlib;
+package com.ldoublem.loadingviewlib.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,8 +9,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+
+import com.ldoublem.loadingviewlib.view.base.LVBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.List;
  * Created by lumingmin on 16/6/24.
  */
 
-public class LVFinePoiStar extends View {
+public class LVFinePoiStar extends LVBase {
     private float mWidth = 0f;
     private float mPadding = 0f;
     private Paint mPaintLine, mPaintCircle;
@@ -33,17 +32,17 @@ public class LVFinePoiStar extends View {
     RectF rectF = new RectF();
 
     public LVFinePoiStar(Context context) {
-        this(context, null);
-    }
-
-    public LVFinePoiStar(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context);
     }
 
     public LVFinePoiStar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
+
+    public LVFinePoiStar(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -235,11 +234,19 @@ public class LVFinePoiStar extends View {
         mPaintCircle.setStrokeWidth(dip2px(1));
 
     }
-
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
+    public void setViewColor(int color)
+    {
+        mPaintLine.setColor(color);
+        postInvalidate();
     }
+
+    public void setCircleColor(int color)
+    {
+        mPaintCircle.setColor(color);
+        postInvalidate();
+    }
+
+
 
     private Point getPoint(float radius, float angle) {
         float x = (float) ((radius) * Math.cos(angle * Math.PI / 180f));
@@ -262,69 +269,44 @@ public class LVFinePoiStar extends View {
 
     }
 
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(0f, 1f, 3500);
-    }
-
-    public void stopAnim() {
-        if (valueAnimator != null) {
-            clearAnimation();
-            valueAnimator.setRepeatCount(0);
-            valueAnimator.cancel();
-            valueAnimator.end();
-            mAnimatedValue = 0.75f;
-            postInvalidate();
-        }
-    }
-
-
-    ValueAnimator valueAnimator = null;
     float mAnimatedValue = 0.75f;
-
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
-        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                invalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-
-            }
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                super.onAnimationRepeat(animation);
-            }
-        });
-        if (!valueAnimator.isRunning()) {
-            valueAnimator.start();
-
-        }
-
-        return valueAnimator;
+    @Override
+    protected void InitPaint() {
+        initPaint();
     }
 
+    @Override
+    protected void OnAnimationUpdate(ValueAnimator valueAnimator) {
+        mAnimatedValue = (float) valueAnimator.getAnimatedValue();
+        invalidate();
+    }
+
+    @Override
+    protected void OnAnimationRepeat(Animator animation) {
+
+    }
+
+    @Override
+    protected int OnStopAnim() {
+        mAnimatedValue = 0.75f;
+        postInvalidate();
+        return 1;
+    }
+    @Override
+    protected int SetAnimRepeatMode() {
+        return ValueAnimator.RESTART;
+    }
 
     public void setDrawPath(boolean isDrawPath) {
         this.isDrawPath = isDrawPath;
     }
 
+    @Override
+    protected void AinmIsRunning() {
 
+    }
+    @Override
+    protected int SetAnimRepeatCount() {
+        return ValueAnimator.INFINITE;
+    }
 }

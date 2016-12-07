@@ -1,27 +1,23 @@
-package com.ldoublem.loadingviewlib;
+package com.ldoublem.loadingviewlib.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+
+import com.ldoublem.loadingviewlib.view.base.LVBase;
 
 /**
  * Created by lumingmin on 16/6/23.
  */
 
-public class LVGears extends View {
+public class LVGears extends LVBase {
     private float mWidth = 0f;
     private Paint mPaint, mPaintWheelBig, mPaintWheelSmall, mPaintAxle, mPaintCenter;
-    private float mPadding = 0f;
+    private float mPadding =0;
     private float mPaintCenterRadius;
 
 
@@ -34,18 +30,16 @@ public class LVGears extends View {
     ValueAnimator valueAnimator = null;
     float mAnimatedValue = 0f;
 
-
     public LVGears(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public LVGears(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public LVGears(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
 
 
@@ -133,12 +127,11 @@ public class LVGears extends View {
         super.onDraw(canvas);
 
         canvas.save();
+        mPadding =dip2px(5);
         drawCircle(canvas);
-
         drawWheelBig(canvas);
         drawWheelSmall(canvas);
         drawAxleAndCenter(canvas);
-
         canvas.restore();
     }
 
@@ -177,75 +170,51 @@ public class LVGears extends View {
         mPaintWheelSmall.setStyle(Paint.Style.STROKE);
         mPaintWheelSmall.setColor(Color.WHITE);
         mPaintWheelSmall.setStrokeWidth(dip2px(0.5f));
-
-        mPadding = dip2px(5);
         mWheelSmallLength = dip2px(3);
         mWheelBigLength = dip2px(2.5f);
 
 
     }
-
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(1, 100, 300);
+    public void setViewColor(int color)
+    {
+        mPaint.setColor(color);
+        mPaintCenter.setColor(color);
+        mPaintAxle.setColor(color);
+        mPaintWheelBig.setColor(color);
+        mPaintWheelSmall.setColor(color);
+        postInvalidate();
+    }
+    @Override
+    protected void InitPaint() {
+        initPaint();
     }
 
-    public void stopAnim() {
-        if (valueAnimator != null) {
-            clearAnimation();
-            valueAnimator.setRepeatCount(0);
-            valueAnimator.cancel();
-            valueAnimator.end();
-            postInvalidate();
-        }
+    @Override
+    protected void OnAnimationUpdate(ValueAnimator valueAnimator) {
+        mAnimatedValue = (float) valueAnimator.getAnimatedValue();
+        postInvalidate();
     }
 
+    @Override
+    protected void OnAnimationRepeat(Animator animation) {
 
-    private ValueAnimator startViewAnim(int startF, final int endF, long time) {
-        valueAnimator = ValueAnimator.ofInt(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
-        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                mAnimatedValue = (int) valueAnimator.getAnimatedValue();
-                mAnimatedValue=mAnimatedValue/100f;
-                postInvalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-
-            }
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                super.onAnimationRepeat(animation);
-            }
-        });
-
-        if (!valueAnimator.isRunning()) {
-            valueAnimator.start();
-
-        }
-
-        return valueAnimator;
     }
 
-
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
+    @Override
+    protected int OnStopAnim() {
+        postInvalidate();
+        return 1;
     }
+    @Override
+    protected int SetAnimRepeatMode() {
+        return ValueAnimator.RESTART;
+    }
+    @Override
+    protected void AinmIsRunning() {
 
+    } @Override
+    protected int SetAnimRepeatCount() {
+        return ValueAnimator.INFINITE;
+    }
 
 }

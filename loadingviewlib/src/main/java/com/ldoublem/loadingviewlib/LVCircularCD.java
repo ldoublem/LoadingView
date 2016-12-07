@@ -99,6 +99,14 @@ public class LVCircularCD extends View {
 
     }
 
+    public void setViewColor(int color)
+    {
+        mPaint.setColor(color);
+        postInvalidate();
+    }
+
+
+
     public void startAnim() {
         stopAnim();
         mProgerssRotateAnim.setDuration(1500);

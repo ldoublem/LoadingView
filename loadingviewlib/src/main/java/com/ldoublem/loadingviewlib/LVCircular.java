@@ -22,7 +22,9 @@ import static android.R.style.Animation;
 
 public class LVCircular extends View {
 
-    private Paint mPaint;
+    private Paint mPaintCenter;
+    private Paint mPaintRound;
+
 
     private float mWidth = 0f;
     private float mAnimatedValue = 0f;
@@ -63,20 +65,25 @@ public class LVCircular extends View {
         for (int i = 0; i < 9; i++) {
             float x2 = (float) ((mWidth / 2.f - mMaxRadius) * Math.cos(mStartAngle + 45f * i * Math.PI / 180f));
             float y2 = (float) ((mWidth / 2.f - mMaxRadius) * Math.sin(mStartAngle + 45f * i * Math.PI / 180f));
-            canvas.drawCircle(mWidth / 2.f - x2, mWidth / 2.f - y2, mMaxRadius, mPaint);
+            canvas.drawCircle(mWidth / 2.f - x2, mWidth / 2.f - y2, mMaxRadius, mPaintRound);
         }
 
-        canvas.drawCircle(mWidth / 2.f, mWidth / 2.f, mWidth / 2.f - mMaxRadius * 6, mPaint);
+        canvas.drawCircle(mWidth / 2.f, mWidth / 2.f, mWidth / 2.f - mMaxRadius * 6, mPaintCenter);
 
 
     }
 
 
     private void initPaint() {
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(Color.WHITE);
+        mPaintCenter = new Paint();
+        mPaintCenter.setAntiAlias(true);
+        mPaintCenter.setStyle(Paint.Style.FILL);
+        mPaintCenter.setColor(Color.WHITE);
+        mPaintRound= new Paint();
+        mPaintRound.setAntiAlias(true);
+        mPaintRound.setStyle(Paint.Style.FILL);
+        mPaintRound.setColor(Color.WHITE);
+
 
 
         mProgerssRotateAnim = new RotateAnimation(0f, 360f, android.view.animation.Animation.RELATIVE_TO_SELF,
@@ -88,6 +95,18 @@ public class LVCircular extends View {
 
     }
 
+    public void setViewColor(int color) {
+        mPaintCenter.setColor(color);
+        postInvalidate();
+    }
+    public void setRoundColor(int color) {
+        mPaintRound.setColor(color);
+        postInvalidate();
+    }
+
+
+
+
     public void startAnim() {
         stopAnim();
         mProgerssRotateAnim.setDuration(3500);
@@ -97,7 +116,6 @@ public class LVCircular extends View {
     public void stopAnim() {
         clearAnimation();
     }
-
 
 
 }

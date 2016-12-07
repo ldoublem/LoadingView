@@ -1,7 +1,6 @@
-package com.ldoublem.loadingviewlib;
+package com.ldoublem.loadingviewlib.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,19 +9,19 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+
+import com.ldoublem.loadingviewlib.view.base.LVBase;
 
 /**
  * Created by lumingmin on 16/6/29.
  */
 
-public class LVGhost extends View {
+public class LVGhost extends LVBase {
 
 
     float mWidth = 0f;
     float mHight = 0f;
-    Paint mPaint, mPaintHand, mPaintShadow, mPaintArms;
+    Paint mPaint, mPaintHand, mPaintShadow;
     RectF rectFGhost = new RectF();
     RectF rectFGhostShadow = new RectF();
     float mPadding = 0f;
@@ -30,17 +29,17 @@ public class LVGhost extends View {
     Path path = new Path();
 
     public LVGhost(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public LVGhost(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public LVGhost(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -67,14 +66,23 @@ public class LVGhost extends View {
         mPaintShadow.setColor(Color.argb(60, 0, 0, 0));
 
 
-        mPaintArms = new Paint();
-        mPaintArms.setAntiAlias(true);
-        mPaintArms.setStrokeWidth(8);
-        mPaintArms.setStyle(Paint.Style.FILL);
-        mPaintArms.setColor(Color.argb(150, 0, 0, 0));
-
 
     }
+
+
+    public void setViewColor(int color)
+    {
+        mPaint.setColor(color);
+        postInvalidate();
+    }
+    public void setHandColor(int color)
+    {
+        mPaintHand.setColor(color);
+        postInvalidate();
+    }
+
+
+
 
 
     private void drawShadow(Canvas canvas) {
@@ -211,81 +219,57 @@ public class LVGhost extends View {
     }
 
 
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(0f, 1f, 2500);
-    }
+//    public void startAnim() {
+//        stopAnim();
+//        startViewAnim(0f, 1f, 2500);
+//    }
 
-    private ValueAnimator valueAnimator;
     private float mAnimatedValue = 0.f;
 
-    public void stopAnim() {
-        if (valueAnimator != null) {
-            clearAnimation();
-            valueAnimator.setRepeatCount(0);
-            valueAnimator.cancel();
-            valueAnimator.end();
-            mAnimatedValue = 0f;
-            wspace = 10;
-            onAnimationRepeatFlag = 1;
-            postInvalidate();
-        }
-    }
 
     int onAnimationRepeatFlag = 1;
 
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
-        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-
-                invalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-            }
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                super.onAnimationRepeat(animation);
-                onAnimationRepeatFlag = onAnimationRepeatFlag * -1;
-
-                if (onAnimationRepeatFlag == -1) {
-                    wspace = 22;
-                } else {
-                    wspace = -2;
-                }
-
-
-            }
-
-        });
-        if (!valueAnimator.isRunning()) {
-            wspace = -2;
-            valueAnimator.start();
-
-        }
-
-        return valueAnimator;
+    @Override
+    protected void InitPaint() {
+        initPaint();
     }
 
+    @Override
+    protected void OnAnimationUpdate(ValueAnimator valueAnimator) {
+        mAnimatedValue = (float) valueAnimator.getAnimatedValue();
+        invalidate();
+    } @Override
+    protected int SetAnimRepeatCount() {
+        return ValueAnimator.INFINITE;
+    }
 
+    @Override
+    protected void OnAnimationRepeat(Animator animation) {
+        onAnimationRepeatFlag = onAnimationRepeatFlag * -1;
+
+        if (onAnimationRepeatFlag == -1) {
+            wspace = 22;
+        } else {
+            wspace = -2;
+        }
+    }
+
+    @Override
+    protected int OnStopAnim() {
+        mAnimatedValue = 0f;
+        wspace = 10;
+        onAnimationRepeatFlag = 1;
+        postInvalidate();
+        return 1;
+    }
+
+    @Override
+    protected int SetAnimRepeatMode() {
+        return ValueAnimator.REVERSE;
+    }
+
+    @Override
+    protected void AinmIsRunning() {
+        wspace = -2;
+    }
 }

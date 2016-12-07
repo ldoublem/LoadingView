@@ -1,23 +1,20 @@
-package com.ldoublem.loadingviewlib;
+package com.ldoublem.loadingviewlib.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Handler;
-import android.os.Message;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+
+import com.ldoublem.loadingviewlib.view.base.LVBase;
 
 /**
  * Created by lumingmin on 16/6/23.
  */
 
-public class LVGearsTwo extends View {
+public class LVGearsTwo extends LVBase {
     private float mWidth = 0f;
     private Paint mPaint, mPaintAxle;
     private Paint mPaintRing;
@@ -38,18 +35,16 @@ public class LVGearsTwo extends View {
     float bigRingCenterX = 0f;
     float bigRingCenterY = 0f;
 
-
     public LVGearsTwo(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public LVGearsTwo(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public LVGearsTwo(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
     }
 
 
@@ -167,10 +162,9 @@ public class LVGearsTwo extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+        mPadding = dip2px(5);
         canvas.save();
         canvas.rotate(180, mWidth / 2, mWidth / 2);
-
         drawSmallRing(canvas);
         drawSmallGear(canvas);
         drawBigGear(canvas);
@@ -199,75 +193,58 @@ public class LVGearsTwo extends View {
         mPaintAxle.setStyle(Paint.Style.FILL);
         mPaintAxle.setColor(Color.WHITE);
         mPaintAxle.setStrokeWidth(dip2px(1.5f));
-        mPadding = dip2px(5);
         mWheelLength = dip2px(2f);
 
 
     }
 
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(0f, 1f, 300);
-    }
-
-    public void stopAnim() {
-        if (valueAnimator != null) {
-            clearAnimation();
-            valueAnimator.setRepeatCount(0);
-            valueAnimator.cancel();
-            valueAnimator.end();
-            postInvalidate();
-        }
-    }
-
-
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
-        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                postInvalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-
-            }
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                super.onAnimationRepeat(animation);
-            }
-        });
-        if (!valueAnimator.isRunning()) {
-            valueAnimator.start();
-
-        }
-
-        return valueAnimator;
-    }
-
-
-    public int dip2px(float dpValue) {
-        final float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
+    public void setViewColor(int color)
+    {
+        mPaint.setColor(color);
+        mPaintAxle.setColor(color);
+        mPaintRing.setColor(color);
+        postInvalidate();
     }
 
 
 
+
+    @Override
+    protected void InitPaint() {
+        initPaint();
+    }
+
+    @Override
+    protected void OnAnimationUpdate(ValueAnimator valueAnimator) {
+        mAnimatedValue = (float) valueAnimator.getAnimatedValue();
+        postInvalidate();
+    }
+
+    @Override
+    protected void OnAnimationRepeat(Animator animation) {
+
+    }
+
+    @Override
+    protected int OnStopAnim() {
+        postInvalidate();
+        return 1;
+    }
+
+
+
+    @Override
+    protected int SetAnimRepeatMode() {
+        return ValueAnimator.RESTART;
+    }
+
+    @Override
+    protected void AinmIsRunning() {
+
+    } @Override
+    protected int SetAnimRepeatCount() {
+        return ValueAnimator.INFINITE;
+    }
 
 
 }

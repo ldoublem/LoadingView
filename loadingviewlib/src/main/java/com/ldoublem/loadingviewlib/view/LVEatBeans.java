@@ -1,7 +1,6 @@
-package com.ldoublem.loadingviewlib;
+package com.ldoublem.loadingviewlib.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,14 +8,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+
+import com.ldoublem.loadingviewlib.view.base.LVBase;
 
 /**
  * Created by lumingmin on 16/6/20.
  */
 
-public class LVEatBeans extends View {
+public class LVEatBeans extends LVBase {
 
     private Paint mPaint, mPaintEye;
 
@@ -34,20 +33,18 @@ public class LVEatBeans extends View {
     private float eatErStrtAngle = mAngle;
     private float eatErEndAngle = 360 - 2 * eatErStrtAngle;
 
-
     public LVEatBeans(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public LVEatBeans(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public LVEatBeans(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initPaint();
-
     }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -95,65 +92,55 @@ public class LVEatBeans extends View {
 
     }
 
-    public void startAnim() {
-        stopAnim();
-        startViewAnim(0f, 1f, 3500);
+
+    public void setViewColor(int color)
+    {
+        mPaint.setColor(color);
+        postInvalidate();
     }
-
-    public void stopAnim() {
-        if (valueAnimator != null) {
-            clearAnimation();
-            valueAnimator.setRepeatCount(0);
-            valueAnimator.cancel();
-            valueAnimator.end();
-            eatErPositonX = 0;
-            postInvalidate();
-        }
-    }
-
-    ValueAnimator valueAnimator = null;
-
-    private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
-        valueAnimator.setDuration(time);
-        valueAnimator.setInterpolator(new LinearInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
-        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float mAnimatedValue = (float) valueAnimator.getAnimatedValue();
-                eatErPositonX = (mWidth - 2 * mPadding - eatErWidth) * mAnimatedValue;
-                eatErStrtAngle = mAngle * (1 - (mAnimatedValue * eatSpeed - (int) (mAnimatedValue * eatSpeed)));
-                eatErEndAngle = 360 - eatErStrtAngle * 2;
-                invalidate();
-            }
-        });
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-
-            }
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                super.onAnimationRepeat(animation);
-            }
-        });
-        if (!valueAnimator.isRunning()) {
-            valueAnimator.start();
-
-        }
-
-        return valueAnimator;
+    public void setEyeColor(int color)
+    {
+        mPaintEye.setColor(color);
+        postInvalidate();
     }
 
 
+
+    @Override
+    protected void InitPaint() {
+        initPaint();
+    }
+
+    @Override
+    protected void OnAnimationUpdate(ValueAnimator valueAnimator) {
+        float mAnimatedValue = (float) valueAnimator.getAnimatedValue();
+        eatErPositonX = (mWidth - 2 * mPadding - eatErWidth) * mAnimatedValue;
+        eatErStrtAngle = mAngle * (1 - (mAnimatedValue * eatSpeed - (int) (mAnimatedValue * eatSpeed)));
+        eatErEndAngle = 360 - eatErStrtAngle * 2;
+        invalidate();
+    }
+
+    @Override
+    protected void OnAnimationRepeat(Animator animation) {
+
+    }
+
+    @Override
+    protected int OnStopAnim() {
+        eatErPositonX = 0;
+        postInvalidate();
+        return 1;
+    }
+    @Override
+    protected int SetAnimRepeatMode() {
+        return ValueAnimator.RESTART;
+    }
+    @Override
+    protected void AinmIsRunning() {
+
+    }
+    @Override
+    protected int SetAnimRepeatCount() {
+        return ValueAnimator.INFINITE;
+    }
 }
