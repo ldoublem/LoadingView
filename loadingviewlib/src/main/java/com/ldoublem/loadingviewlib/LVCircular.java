@@ -112,7 +112,11 @@ public class LVCircular extends View {
         mProgerssRotateAnim.setDuration(3500);
         startAnimation(mProgerssRotateAnim);
     }
-
+    public void startAnim(int time) {
+        stopAnim();
+        mProgerssRotateAnim.setDuration(time);
+        startAnimation(mProgerssRotateAnim);
+    }
     public void stopAnim() {
         clearAnimation();
     }

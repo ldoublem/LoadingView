@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         mLVFinePoiStar = (LVFinePoiStar) findViewById(R.id.lv_finePoiStar);
         mLVFinePoiStar.setViewColor(Color.WHITE);
         mLVFinePoiStar.setCircleColor(Color.YELLOW);
-
+        mLVFinePoiStar.setDrawPath(true);
 
         mLVGears = (LVGears) findViewById(R.id.lv_gears);
         mLVGears.setViewColor(Color.rgb(55, 155, 233));
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         mLVBlock = (LVBlock) findViewById(R.id.lv_block);
 
         mLVBlock.setViewColor(Color.rgb(245,209,22));
-        mLVBlock.setShadowColor(Color.argb(180, 0, 0, 0));
+        mLVBlock.setShadowColor(Color.BLACK);
 //        mLVBlock.isShadow(false);
 
 

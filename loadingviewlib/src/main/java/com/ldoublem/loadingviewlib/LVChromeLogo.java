@@ -182,7 +182,11 @@ public class LVChromeLogo extends View {
         mProgerssRotateAnim.setDuration(1500);
         startAnimation(mProgerssRotateAnim);
     }
-
+    public void startAnim(int time) {
+        stopAnim();
+        mProgerssRotateAnim.setDuration(time);
+        startAnimation(mProgerssRotateAnim);
+    }
     public void stopAnim() {
         clearAnimation();
     }

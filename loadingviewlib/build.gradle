@@ -35,7 +35,7 @@ dependencies {
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "0.0.1"
+version = "1.0"
 def siteUrl = 'https://github.com/ldoublem/LoadingView'    // project homepage
 def gitUrl = 'https://github.com/ldoublem/LoadingView.git' // project git
 group = "com.ldoublem.loadingview"
