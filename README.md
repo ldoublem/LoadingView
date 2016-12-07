@@ -33,7 +33,7 @@ a simple loadingview for android with animation
 18|![18](https://github.com/ldoublem/LoadingView/blob/master/screen/18.png) | LVFunnyBar | setViewColor(int color)<br>startAnim(int time)<br>stopAnim()
 19|![19](https://github.com/ldoublem/LoadingView/blob/master/screen/19.png) | LVGhost | setViewColor(int color)<br>setHandColor(int color)<br>startAnim(int time)<br>stopAnim()
 20|![20](https://github.com/ldoublem/LoadingView/blob/master/screen/20.png) | LVBlazeWood | startAnim(int time)<br>stopAnim()
-21|![21](https://github.com/ldoublem/LoadingView/blob/master/screen/20.png) | LVBlazeWood | setViewColor(int color)<br>setCellColor(int color)<br>setShowNum(boolean show)<br>setValue(int value)//0-100<br>startAnim(int time)<br>stopAnim()
+21|![21](https://github.com/ldoublem/LoadingView/blob/master/screen/21.png) | LVBattery | setViewColor(int color)<br>setCellColor(int color)<br>setShowNum(boolean show)<br>setValue(int value)//0-100<br>startAnim(int time)<br>stopAnim()
 
 
 
