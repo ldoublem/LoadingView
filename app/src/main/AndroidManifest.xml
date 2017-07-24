@@ -15,9 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MacActivity">
-
-        </activity>
+        <activity android:name=".MacActivity"/>
+        <activity android:name=".TestActivity"/>
     </application>
 
 </manifest>
