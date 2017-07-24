@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.ldoublem.loadingView"
         minSdkVersion 15
@@ -20,16 +21,20 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
-    compile 'com.android.support:design:23.4.0'
+    compile "com.android.support:appcompat-v7:$project.ext.supportLibraryVersion"
+    compile 'com.android.support.constraint:constraint-layout:+'
+    compile "com.android.support:design:$project.ext.supportLibraryVersion"
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile 'com.android.support:support-annotations:23.4.0'
+    androidTestCompile "com.android.support:support-annotations:$project.ext.supportLibraryVersion"
     compile 'com.ldoublem.appleviewlib:appleviewlib:0.0.1'
     compile project(path: ':loadingviewlib')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 //    compile 'com.ldoublem.loadingview:loadingviewlib:1.0'
 
 
+}
+repositories {
+    mavenCentral()
 }
