@@ -7,6 +7,7 @@ a simple loadingview for android with animation
 
 #Preview
 ![screen](https://github.com/ldoublem/LoadingView/blob/master/screen/screen.gif)
+![screen2](https://github.com/ldoublem/LoadingView/blob/master/screen/screen2.gif)
 #Gradle
 ```compile 'com.ldoublem.loadingview:loadingviewlib:1.0'```
 ---
@@ -34,6 +35,7 @@ a simple loadingview for android with animation
 19|![19](https://github.com/ldoublem/LoadingView/blob/master/screen/19.png) | LVGhost | setViewColor(int color)<br>setHandColor(int color)<br>startAnim(int time)<br>stopAnim()
 20|![20](https://github.com/ldoublem/LoadingView/blob/master/screen/20.png) | LVBlazeWood | startAnim(int time)<br>stopAnim()
 21|![21](https://github.com/ldoublem/LoadingView/blob/master/screen/21.png) | LVBattery | setViewColor(int color)<br>setCellColor(int color)<br>setShowNum(boolean show)<br>setValue(int value)//0-100<br>startAnim(int time)<br>stopAnim()
+22|![22](https://github.com/ldoublem/LoadingView/blob/master/screen/22.png) | LVSunSetView | setSunendTime(String endtime)<br>setSunstartTime(String starttime)<br>startSunset()
 
 
 

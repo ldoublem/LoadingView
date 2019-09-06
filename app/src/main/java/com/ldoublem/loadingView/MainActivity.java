@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.ldoublem.loadingviewlib.LVSunSetView;
 import com.ldoublem.loadingviewlib.view.LVBattery;
 import com.ldoublem.loadingviewlib.view.LVBlazeWood;
 import com.ldoublem.loadingviewlib.view.LVBlock;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     LVGhost mLVGhost;
     LVFunnyBar mLVFunnyBar;
     LVRingProgress mLVRingProgress;
-
+    LVSunSetView lv_sunset;
     LVBlazeWood mLVBlazeWood;
 
     int mValueLVLineWithText = 0;
@@ -155,21 +156,22 @@ public class MainActivity extends AppCompatActivity {
 
         mLVBlock = (LVBlock) findViewById(R.id.lv_block);
 
-        mLVBlock.setViewColor(Color.rgb(245,209,22));
+        mLVBlock.setViewColor(Color.rgb(245, 209, 22));
         mLVBlock.setShadowColor(Color.BLACK);
 //        mLVBlock.isShadow(false);
-
 
 
         mLVFunnyBar = (LVFunnyBar) findViewById(R.id.lv_funnybar);
         mLVFunnyBar.setViewColor(Color.rgb(234, 167, 107));
 
 
-
         mLVBlazeWood = (LVBlazeWood) findViewById(R.id.lv_wood);
 
 //        mLVLineWithText.setValue(50);
 
+        lv_sunset = (LVSunSetView) findViewById(R.id.lv_sunset);
+        lv_sunset.setSunendTime("2019-09-06 16:20:00");
+        lv_sunset.setSunstartTime("2019-09-06 7:16:00");
 
     }
 
@@ -220,6 +222,8 @@ public class MainActivity extends AppCompatActivity {
             ((LVRingProgress) v).startAnim(3000);
         } else if (v instanceof LVBlazeWood) {
             ((LVBlazeWood) v).startAnim(500);
+        } else if (v instanceof LVSunSetView) {
+            ((LVSunSetView) v).startSunset();
         }
 
 
@@ -248,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
         mLVFunnyBar.startAnim();
         mLVRingProgress.startAnim(3000);
         mLVBlazeWood.startAnim(500);
+        lv_sunset.startSunset();
     }
 
 
